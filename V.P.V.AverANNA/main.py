@@ -196,7 +196,7 @@ while 1:
                     sys.exit(0)
                 _speak_("welcome %s %s"%(rname.split(" ")[0], rname.split(" ")[1]))
                 name = rname.split(" ")[0]
-                notdone=True
+                done=True
             except:
                 _speak_("an error occurred during processing your face.All i could say is : login failed and i want to check you again.")
                 #sys.exit(0)
