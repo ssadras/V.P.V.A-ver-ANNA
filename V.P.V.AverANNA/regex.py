@@ -72,6 +72,4 @@ class emotions (object):
 			if obj[0]>Max[0]:
 				Max = obj[:]
 		return Max
-text = emotions ("hello world !")
-array = text._freq_()
-print(array)
+
