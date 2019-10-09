@@ -97,13 +97,14 @@ def _speak_ (input):
     toSay.save ("input-computer.mp3")
     pl.playsound ("input-computer.mp3")
     os.remove("input-computer.mp3")
-def get_audio(limit, starter):
+def get_audio(limit):
 
     rObj = sr.Recognizer()
 
     with sr.Microphone() as src:
+
         print("talk to me ...")
-        _speak_(starter)
+        
         '''
         listen and record the user s command
         '''
@@ -198,14 +199,17 @@ while 1:
                 name = rname.split(" ")[0]
                 done=True
             except:
-                _speak_("an error occurred during processing your face.All i could say is : login failed and i want to check you again.")
+                _speak_("an error occurred during processing your face.All i could say is  login failed; and i want to check you again.")
                 #sys.exit(0)
+    '''
     if index:
-        sleep(7)
+        index += 1
+    '''
+    #sleep(7)
     com = "%s How can i help you ?"%name
     _speak_(com)
 
-    command = get_audio(7, com)
+    command = get_audio(7)
     if command.lower() == "nothing" or command.lower() == "no":
         _speak_("okay %s, until next time i'll not bother you."%name)
         sys.exit(0)
@@ -220,4 +224,4 @@ while 1:
     except :
         pass
     cou += 1
-    index += 1
+    
