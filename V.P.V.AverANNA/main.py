@@ -32,7 +32,6 @@ def get_encoded_faces():
     """
     looks through the faces folder and encodes all
     the faces
-
     :return: dict of (name, image encoded)
     """
     encoded = {}
@@ -188,16 +187,20 @@ while 1:
     '''
     if cou == 1:
         _speak_("running face recognition software...")
-        try:
-            rname = cFaceCapture()
-            if rname == "anonymous":
-                _speak_("i don't know who you are,so login failed")
-                sys.exit(0)
-            _speak_("welcome %s %s"%(rname.split(" ")[0], rname.split(" ")[1]))
-            name = rname.split(" ")[0]
-        except:
-            _speak_("an error occurred during processing your face.All i could say is : login failed.")
-            sys.exit(0)
+        notdone=True
+        while notdone:
+            try:
+                rname = cFaceCapture()
+                while rname == "anonymous":
+                    _speak_("i don't know who you are,so login failed")
+                    #sys.exit(0)
+                    rname = cFaceCapture()
+                _speak_("welcome %s %s"%(rname.split(" ")[0], rname.split(" ")[1]))
+                name = rname.split(" ")[0]
+                notdone=False
+            except:
+                _speak_("an error occurred during processing your face.All i could say is : login failed.")
+                #sys.exit(0)
     if index:
         sleep(7)
     com = "%s How can i help you ?"%name
