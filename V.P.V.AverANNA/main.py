@@ -178,6 +178,7 @@ def main ():
         pass
 
 cou = 1
+index = 0
 while 1:
     '''
     x = threading.Thread(target=gif())
@@ -197,6 +198,8 @@ while 1:
         except:
             _speak_("an error occurred during processing your face.All i could say is : login failed.")
             sys.exit(0)
+    if index:
+        sleep(7)
     com = "%s How can i help you ?"%name
     _speak_(com)
 
@@ -215,3 +218,4 @@ while 1:
     except :
         pass
     cou += 1
+    index += 1
