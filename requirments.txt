@@ -1,0 +1,5 @@
+gtts
+playsound
+wikipedia
+speech_recognition
+requests
