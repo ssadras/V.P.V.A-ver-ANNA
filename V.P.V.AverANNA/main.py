@@ -187,8 +187,8 @@ while 1:
     '''
     if cou == 1:
         _speak_("running face recognition software...")
-        notdone=True
-        while notdone:
+        done=False
+        while not done:
             try:
                 rname = cFaceCapture()
                 while rname == "anonymous":
@@ -197,7 +197,7 @@ while 1:
                     rname = cFaceCapture()
                 _speak_("welcome %s %s"%(rname.split(" ")[0], rname.split(" ")[1]))
                 name = rname.split(" ")[0]
-                notdone=False
+                notdone=True
             except:
                 _speak_("an error occurred during processing your face.All i could say is : login failed.")
                 #sys.exit(0)
