@@ -32,6 +32,7 @@ def get_encoded_faces():
     """
     looks through the faces folder and encodes all
     the faces
+
     :return: dict of (name, image encoded)
     """
     encoded = {}
@@ -75,7 +76,7 @@ def classify_face(im):
 
         face_names.append(name)
 
-    return face_names[0]
+    return face_names
 
 def cFaceCapture ():
     video_capture = cv2.VideoCapture(0)
@@ -97,14 +98,13 @@ def _speak_ (input):
     toSay.save ("input-computer.mp3")
     pl.playsound ("input-computer.mp3")
     os.remove("input-computer.mp3")
-def get_audio(limit):
+def get_audio(limit, starter):
 
     rObj = sr.Recognizer()
 
     with sr.Microphone() as src:
-
         print("talk to me ...")
-        
+        _speak_(starter)
         '''
         listen and record the user s command
         '''
@@ -133,7 +133,7 @@ def get_audio(limit):
 def gif ():
     pg.init()
     disp = pg.display.set_mode((300, 150))
-    pg.display.set_caption("V.P.V.A ver ANNA")
+    pg.display.set_caption("V.P.V.A ver ANA")
     color = [241, 241, 241]
 
     sur = display(disp)
@@ -178,7 +178,6 @@ def main ():
         pass
 
 cou = 1
-index = 0
 while 1:
     '''
     x = threading.Thread(target=gif())
@@ -188,28 +187,27 @@ while 1:
     '''
     if cou == 1:
         _speak_("running face recognition software...")
-        done=False
-        while not done:
-            try:
-                rname = cFaceCapture()
-                if rname == "anonymous":
-                    _speak_("i don't know who you are,so login failed")
-                    sys.exit(0)
-                _speak_("welcome %s %s"%(rname.split(" ")[0], rname.split(" ")[1]))
-                name = rname.split(" ")[0]
-                done=True
-            except:
-                _speak_("an error occurred during processing your face.All i could say is  login failed; and i want to check you again.")
-                #sys.exit(0)
-    '''
-    if index:
-        index += 1
-    '''
-    #sleep(7)
+        try:
+            rname = cFaceCapture()
+            boolean = False
+            cou = 0
+            for i in rname :
+                if i != "anonymous":
+                    boolean = True
+                    break; 
+                cou += 1
+            if not boolean:
+                _speak_("i don't know who you are,so login failed")
+                sys.exit(0)
+            _speak_("welcome %s %s"%(rname[cou].split(" ")[0], rname[cou].split(" ")[1]))
+            name = rname[cou].split(" ")[0]
+        except:
+            _speak_("an error occurred during processing your face.All i could say is : login failed.")
+            sys.exit(0)
     com = "%s How can i help you ?"%name
     _speak_(com)
 
-    command = get_audio(7)
+    command = get_audio(7, com)
     if command.lower() == "nothing" or command.lower() == "no":
         _speak_("okay %s, until next time i'll not bother you."%name)
         sys.exit(0)
@@ -217,11 +215,10 @@ while 1:
     if command.lower() == "bye" or command.lower() == "goodbye":
         _speak_("okay %s, bye for now."%name)
         sys.exit(0)
-    if command.lower() == "what does Hana stands for" or command.lower() == "what does Anna stands for":
-        _speak_("%s,hana stands on : Artificial Neural Network Assistant"%name)
+    if command.lower() == "what does Hana stands for" or command.lower() == "what does Hannah stands for":
+        _speak_("%s,hana stands on : hyper annoying neat assistant"%name)
     try:
         _speak_(pro.command_proccess(command))
     except :
         pass
     cou += 1
-    
