@@ -21,4 +21,4 @@ update : now with face recognition software ... use your face to unlock ANNA jus
 
 update : now with group face recognition ...
 
-
+![alt text](https://raw.githubusercontent.com/sadrass/V.P.V.A-ver-ANNA/master/V.P.V.AverANNA/frame_040_delay-0.04s.png)
