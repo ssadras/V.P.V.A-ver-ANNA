@@ -20,3 +20,5 @@ update : now with YOLO object detection ... detect even traffic with ANNA
 update : now with face recognition software ... use your face to unlock ANNA just with a single sight
 
 update : now with group face recognition ...
+
+
