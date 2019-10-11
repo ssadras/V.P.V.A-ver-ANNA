@@ -1,14 +1,22 @@
-This is the HELLI 3 's jarvis !!!
-the first release was on july of 2019 ...
+# V.P.V.A-ver-ANNA
+helli 3's jarvis
 
+first release on july of 2019...
 
-update :NOW with email assistant ... send our emails right from ANNA
+Virtual Personal Voice Assistant is the main branch of this project...
 
-update :Version hanna relesed with british accent...
+this prject splits into two branchs : 
+        1 - ANNA : Artificial Neural Network Assistant
+        2 - HANA : Hyper Annoying NEAT* Assistant (*Neural Electronic Artitficial Tongue)
 
-update :NOW with face recognition ... use your face to unlock ANNA
+update : now with e-mail assistant ... send your mails right from the ANNA
 
-update :NOW with YOLO object detection ... detec even traffic with ANNA
+update : now HANA is faster and smarter
 
-update : NOW with group face recognotion...
+update : now ANNA is faster and smarter
 
+update : now with YOLO object detection ... detect even traffic with ANNA
+
+update : now with face recognition software ... use your face to unlock ANNA just with a single sight
+
+update : now with group face recognition ...
