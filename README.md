@@ -1,13 +1,13 @@
 # V.P.V.A-ver-ANNA
-helli 3's jarvis
+helli 3's J.A.R.V.I.S
 
 first release on july of 2019...
 
 Virtual Personal Voice Assistant is the main branch of this project...
 
 this prject splits into two branchs : 
-        1 - ANNA : Artificial Neural Network Assistant
-        2 - HANA : Hyper Annoying NEAT* Assistant (*Neural Electronic Artitficial Tongue)
+        1 - ANNA : Artificial Neural Network Assistant/
+        2 - HANA : Hyper Annoying NEAT* Assistant (*Neural Electronic Artitficial Tongue)/
 
 update : now with e-mail assistant ... send your mails right from the ANNA
 
