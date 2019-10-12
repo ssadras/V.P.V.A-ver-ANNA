@@ -110,25 +110,29 @@ def get_audio(limit, starter):
         '''
         audio = rObj.listen(src, phrase_time_limit=limit)
     print("limit finished")
+    while True:
+        try:
+            final_text = rObj.recognize_google (audio, language = "en-US")
+            print ("You said : %s"%final_text)
 
-    try:
-        final_text = rObj.recognize_google (audio, language = "en-US")
-        print ("You said : %s"%final_text)
+            return final_text
 
-        return final_text
+        except Exception as exc :
+            _speak_ ('''
+            I'm sorry but an error occurred during processing your voice :
+                please check conection and speak english. i will hear you.
+                ''')
+            rObj = sr.Recognizer()
 
-    except Exception as exc :
-        _speak_ ('''
-        I'm sorry but an error occurred during processing your voice :
-            see if you are not connected to the internet ;
-            if you were connected and there were not any problem with the connection ; please reduce noises around you;
-            if neither problems above occurred,please speak english.
-        however I will put the error below and if you know python language programming please help us to debug;
-            ''')
-
-        print(exc)
-
-        return
+            with sr.Microphone() as src:
+                print("talk to me ...")
+                _speak_(starter)
+                '''
+                listen and record the user s command
+                '''
+                audio = rObj.listen(src, phrase_time_limit=limit)
+            print("limit finished")
+            print(exc)
 
 def gif ():
     pg.init()
