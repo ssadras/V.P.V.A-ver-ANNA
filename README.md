@@ -11,7 +11,7 @@ this prject splits into two branchs :
 
 update : now with e-mail assistant ... send your mails right from the ANNA
 
-update : now HANA is faster and smarter
+update : now ANNA is faster and smarter
 
 update : now ANNA is faster and smarter
 
