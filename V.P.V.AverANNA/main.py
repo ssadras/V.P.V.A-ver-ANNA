@@ -10,6 +10,7 @@ import threading
 import gtts
 import sys
 import cv2
+import tkinter as tk
 import os #; print(len(os.listdir("\\V.P.V.A\\assets")))
 # starting
 pg.init()
@@ -133,7 +134,78 @@ def get_audio(limit, starter):
                 audio = rObj.listen(src, phrase_time_limit=limit)
             print("limit finished")
             print(exc)
-
+namevar=''
+passvar=''
+userpasscheck=''
+loginpage=''
+def checkuserpass ():
+    global namevar,passvar,userpasscheck
+    userpassfile=open('userpass.txt','r')
+    userpasslist=userpassfile.readlines()
+    count=0
+    for userpass in userpasslist:
+        userpassSplit=userpass.split(',')
+        user=userpassSplit[0]
+        password=userpassSplit[1][:-1]
+        count+=1
+        if user.lower()==namevar.get().lower() and password.lower()==passvar.get().lower():
+            return user
+    return 'nobody'
+def loginbutton (event):
+    global namevar,passvar,userpasscheck,loginpage
+    user=checkuserpass()
+    if user=='nobody':
+        userpasscheck=''
+        #namentry.delete(0,len(namevar))
+        #passentry.delete(0,len(namevar))
+    elif user!='':
+        userpasscheck=user
+        loginpage.destroy()
+def loginpagetk ():
+    global namevar,passvar,userpasscheck,loginpage
+    loginpage=tk.Tk()
+    loginpage.title('Anna - Login')
+    namevar=tk.StringVar()
+    passvar=tk.StringVar()
+    nametext=tk.Label(loginpage,text='Username ',font=('Arial',15))
+    passtext=tk.Label(loginpage,text='Password ',font=('Arial',15))
+    namentry=tk.Entry(loginpage,font=('Arial',15),textvariable=namevar)
+    passentry=tk.Entry(loginpage,font=('Arial',15),textvariable=passvar)
+    loginbut=tk.Button(loginpage,text='Login',font=('Arial',15))
+    nametext.grid(column=2,row=2)
+    namentry.grid(column=4,row=2)
+    passtext.grid(column=2,row=4)
+    passentry.grid(column=4,row=4)
+    loginbut.grid(column=3,row=6)
+    loginbut.bind('<Button-1>',loginbutton)
+    loginpage.mainloop()
+def loginway ():
+    com="In which way you want to login, 1- with username and password, or 2- with face recognation?"
+    _speak_(com)
+    command = get_audio(7, com)
+    if command.lower() == 'face recognation':
+        try:
+            rname = cFaceCapture()
+            boolean = False
+            cou = 0
+            for i in rname :
+                if i != "anonymous":
+                    boolean = True
+                    break; 
+                cou += 1
+            if not boolean:
+                _speak_("i don't know who you are,so login failed")
+                sys.exit(0)
+            _speak_("welcome %s %s"%(rname[cou].split(" ")[0], rname[cou].split(" ")[1]))
+            name = rname[cou].split(" ")[0]
+        except:
+            _speak_("an error occurred during processing your face.All i could say is : login failed.")
+            sys.exit(0)
+        return (name)
+    else:
+        loginpagetk()
+        name=userpasscheck
+    return(name)
 def gif ():
     pg.init()
     disp = pg.display.set_mode((300, 150))
@@ -189,25 +261,7 @@ while 1:
     y = threading.Thread(target=main())
     y.start()
     '''
-    if cou == 1:
-        _speak_("running face recognition software...")
-        try:
-            rname = cFaceCapture()
-            boolean = False
-            cou = 0
-            for i in rname :
-                if i != "anonymous":
-                    boolean = True
-                    break; 
-                cou += 1
-            if not boolean:
-                _speak_("i don't know who you are,so login failed")
-                sys.exit(0)
-            _speak_("welcome %s %s"%(rname[cou].split(" ")[0], rname[cou].split(" ")[1]))
-            name = rname[cou].split(" ")[0]
-        except:
-            _speak_("an error occurred during processing your face.All i could say is : login failed.")
-            sys.exit(0)
+    name=loginway()
     com = "%s How can i help you ?"%name
     _speak_(com)
 
