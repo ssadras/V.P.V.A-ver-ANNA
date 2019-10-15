@@ -170,7 +170,7 @@ def loginpagetk ():
     nametext=tk.Label(loginpage,text='Username ',font=('Arial',15))
     passtext=tk.Label(loginpage,text='Password ',font=('Arial',15))
     namentry=tk.Entry(loginpage,font=('Arial',15),textvariable=namevar)
-    passentry=tk.Entry(loginpage,font=('Arial',15),textvariable=passvar)
+    passentry=tk.Entry(loginpage,font=('Arial',15),textvariable=passvar,show="*")
     loginbut=tk.Button(loginpage,text='Login',font=('Arial',15))
     nametext.grid(column=2,row=2)
     namentry.grid(column=4,row=2)
@@ -261,7 +261,8 @@ while 1:
     y = threading.Thread(target=main())
     y.start()
     '''
-    name=loginway()
+    if cou==1:
+        name=loginway()
     com = "%s How can i help you ?"%name
     _speak_(com)
 
