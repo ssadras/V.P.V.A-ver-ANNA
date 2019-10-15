@@ -165,6 +165,7 @@ def loginpagetk ():
     global namevar,passvar,userpasscheck,loginpage
     loginpage=tk.Tk()
     loginpage.title('Anna - Login')
+    loginpage.geometry('425x100+450+300')
     namevar=tk.StringVar()
     passvar=tk.StringVar()
     nametext=tk.Label(loginpage,text='Username ',font=('Arial',15))
