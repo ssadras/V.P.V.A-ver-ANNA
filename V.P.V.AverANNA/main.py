@@ -186,19 +186,18 @@ def loginway ():
     com="In which way you want to login, 1- with username and password, or 2- with face recognation?"
     _speak_(com)
     command = get_audio(7, com)
-    if command.lower() == 'face recognation':
+    if ('face' in command.lower()) or ('recognation' in command.lower()):
         try:
-            rname = cFaceCapture()
-            boolean = False
-            cou = 0
-            for i in rname :
-                if i != "anonymous":
-                    boolean = True
-                    break;
-                cou += 1
-            if not boolean:
-                _speak_("i don't know who you are,so login failed")
-                sys.exit(0)
+            boolean = True
+            while boolean:
+                rname = cFaceCapture()
+                for i in rname :
+                    if i != "anonymous":
+                        boolean = False
+                        break;
+                if boolean:
+                    _speak_("i don't know who you are,so i will try again")
+                    #sys.exit(0)
             _speak_("welcome %s %s"%(rname[cou].split(" ")[0], rname[cou].split(" ")[1]))
             name = rname[cou].split(" ")[0]
         except:
@@ -260,7 +259,7 @@ tkpage.title('Anna')
 tkpage.geometry('300x200+1200+0')
 annabox=tk.Label(tkpage,text='how can i help you?',font=('Arial',10),fg='green')
 annabox.pack(side='top')
-name='sadra'
+name=loginway()
 custbox=tk.Label(tkpage,text=' ')
 custbox.pack(side='top')
 answerbox=tk.Label(tkpage,text=' ',font=('Arial',12),fg='red')
