@@ -11,6 +11,7 @@ import gtts
 import sys
 import cv2
 import tkinter as tk
+from PIL import Image, ImageTk
 import os #; print(len(os.listdir("\\V.P.V.A\\assets")))
 # starting
 pg.init()
@@ -221,7 +222,8 @@ def gif ():
         pg.display.update()
         pg.time.Clock().tick(60)
     pg.quit()
-def main (name):
+def main (event):
+    global name,output
     com = "%s How can i help you ?"%name
     _speak_(com)
 
@@ -231,24 +233,32 @@ def main (name):
         _speak_(output)
         sys.exit(0)
 
-    if command.lower() == "bye" or command.lower() == "goodbye":
+    elif command.lower() == "bye" or command.lower() == "goodbye":
         output="okay %s, bye for now."%name
         _speak_(output)
         sys.exit(0)
-    if command.lower() == "what does Anna stands for" or command.lower() == "what does Ana stands for":
+    elif command.lower() == "what does Anna stands for" or command.lower() == "what does Ana stands for":
         output="%s,Anna stands on : artificial nural network assistant"%name
         _speak_(output)
+    else:
+        output=' '
     try:
         _speak_(pro.command_proccess(command))
     except :
         pass
-    return output
 tkpage=tk.Tk()
 tkpage.title('Anna')
 tkpage.geometry('300x200+1200+0')
-annabox=tk.Label(tkpage,text='In which way you want to login,\n 1- with username and password \n or 2- with face recognation?',font=('Arial',10),fg='white')
+annabox=tk.Label(tkpage,text='In which way you want to login,\n 1- with username and password \n or 2- with face recognation?',font=('Arial',10),fg='green')
+annabox['bg']=annabox.master['bg']
 annabox.grid(row=1,column=1)
-name=loginway()
-custbox=main('sadra')
+name='sadra'
+output=' '
+custbox=tk.Label(tkpage,text=output)
 custbox.grid(row=2,column=1)
+iconim=Image.open('default.png')
+iconim=ImageTk.PhotoImage(iconim)
+speechbut=tk.Button(tkpage,image=iconim)
+speechbut.grid(row=3,column=2)
+speechbut.bind('<Button-1>',main)
 tkpage.mainloop()
