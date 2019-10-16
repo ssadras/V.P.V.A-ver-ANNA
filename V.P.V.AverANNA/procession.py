@@ -23,7 +23,7 @@ def get_audio (limit):
         '''
         listen and record the user s command
         '''
-        audio = rObj.listen(src, phrase_time_limit = limit)
+        audio = rObj.listen(src)
 
     try:
         final_text = rObj.recognize_google (audio, language = "en-US")
