@@ -105,12 +105,12 @@ def get_audio(limit, starter):
 
     with sr.Microphone() as src:
         print("talk to me ...")
-        _speak_(starter)
+        #_speak_(starter)
         '''
         listen and record the user s command
         '''
-        audio = rObj.listen(src, phrase_time_limit=limit)
-    print("limit finished")
+        audio = rObj.listen(src)#, phrase_time_limit=limit
+    #print("limit finished")
     while True:
         try:
             final_text = rObj.recognize_google (audio, language = "en-US")
@@ -181,6 +181,7 @@ def loginpagetk ():
     loginbut.bind('<Button-1>',loginbutton)
     loginpage.mainloop()
 def loginway ():
+    #loginpagetk()
     com="In which way you want to login, 1- with username and password, or 2- with face recognation?"
     _speak_(com)
     command = get_audio(7, com)
@@ -192,7 +193,7 @@ def loginway ():
             for i in rname :
                 if i != "anonymous":
                     boolean = True
-                    break; 
+                    break;
                 cou += 1
             if not boolean:
                 _speak_("i don't know who you are,so login failed")
@@ -206,7 +207,7 @@ def loginway ():
     else:
         loginpagetk()
         name=userpasscheck
-    return(name)
+    return name
 def gif ():
     pg.init()
     disp = pg.display.set_mode((300, 150))
@@ -220,40 +221,6 @@ def gif ():
         pg.display.update()
         pg.time.Clock().tick(60)
     pg.quit()
-
-
-def main ():
-
-
-
-    '''
-    disp.fill(tuple(color))
-    sur.load_image("default.png", (50, 350), (200, 150), disp)
-    pg.display.update()
-    '''
-    _speak_("running face recognition software...")
-    name = cFaceCapture()
-    if name == "anonymous":
-        _speak_("i don't know who you are ; so login failed.")
-        sys.exit(0)
-    _speak_("welcome %s"%name)
-    name = name.split(" ")[0]
-    com = "%s, How can i help you ?"%name #if j else "hello; i am Ana; how can i help you ?"
-
-
-    command = get_audio(7, com)
-    if command.lower() == "nothing" or command.lower() == "no":
-        _speak_("okay %s, until next time i'll not bother you."%name)
-        sys.exit(0)
-
-    if command.lower() == "bye" or command.lower() == "goodbye":
-        _speak_("okay %s, bye for now."%name)
-        sys.exit(0)
-    try:
-        _speak_(pro.command_proccess(command))
-    except :
-        pass
-
 cou = 1
 while 1:
     '''
