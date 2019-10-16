@@ -223,11 +223,18 @@ def gif ():
         pg.time.Clock().tick(60)
     pg.quit()
 def main (event):
-    global name,output
+    global name,output,annabox,custbox,answerbox
+    annabox.destroy()
+    custbox.destroy()
+    answerbox.destroy()
+    annabox=tk.Label(tkpage,text='how can i help you?',font=('Arial',10),fg='green')
+    annabox.pack(side='top')
     com = "%s How can i help you ?"%name
     _speak_(com)
 
     command = get_audio(7, com)
+    custbox=tk.Label(tkpage,text=command)
+    custbox.pack(side='top')
     if command.lower() == "nothing" or command.lower() == "no":
         output="okay %s, until next time i'll not bother you."%name
         _speak_(output)
@@ -236,9 +243,9 @@ def main (event):
     elif command.lower() == "bye" or command.lower() == "goodbye":
         output="okay %s, bye for now."%name
         _speak_(output)
-        sys.exit(0)
-    elif command.lower() == "what does Anna stands for" or command.lower() == "what does Ana stands for":
-        output="%s,Anna stands on : artificial nural network assistant"%name
+        #sys.exit(0)
+    elif command.lower() == "what does anna stands for" or command.lower() == "what does ana stands for" or command.lower() == "what does anna stand for" or command.lower() == "what does ana stand for":
+        output="%s,Anna stands on :\n artificial nural network assistant"%name
         _speak_(output)
     else:
         output=' '
@@ -246,19 +253,22 @@ def main (event):
         _speak_(pro.command_proccess(command))
     except :
         pass
+    answerbox=tk.Label(tkpage,text=output,font=('Arial',12),fg='red')
+    answerbox.pack(side='top')
 tkpage=tk.Tk()
 tkpage.title('Anna')
 tkpage.geometry('300x200+1200+0')
-annabox=tk.Label(tkpage,text='In which way you want to login,\n 1- with username and password \n or 2- with face recognation?',font=('Arial',10),fg='green')
-annabox['bg']=annabox.master['bg']
-annabox.grid(row=1,column=1)
+annabox=tk.Label(tkpage,text='how can i help you?',font=('Arial',10),fg='green')
+annabox.pack(side='top')
 name='sadra'
-output=' '
-custbox=tk.Label(tkpage,text=output)
-custbox.grid(row=2,column=1)
-iconim=Image.open('default.png')
+custbox=tk.Label(tkpage,text=' ')
+custbox.pack(side='top')
+answerbox=tk.Label(tkpage,text=' ',font=('Arial',12),fg='red')
+answerbox.pack(side='top')
+iconim=Image.open('O97POM0.jpg')
+iconim.thumbnail((50,50), Image.ANTIALIAS)
 iconim=ImageTk.PhotoImage(iconim)
 speechbut=tk.Button(tkpage,image=iconim)
-speechbut.grid(row=3,column=2)
+speechbut.pack(side='bottom')
 speechbut.bind('<Button-1>',main)
 tkpage.mainloop()
