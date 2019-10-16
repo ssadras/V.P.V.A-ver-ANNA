@@ -221,31 +221,34 @@ def gif ():
         pg.display.update()
         pg.time.Clock().tick(60)
     pg.quit()
-cou = 1
-while 1:
-    '''
-    x = threading.Thread(target=gif())
-    x.start()
-    y = threading.Thread(target=main())
-    y.start()
-    '''
-    if cou==1:
-        name=loginway()
+def main (name):
     com = "%s How can i help you ?"%name
     _speak_(com)
 
     command = get_audio(7, com)
     if command.lower() == "nothing" or command.lower() == "no":
-        _speak_("okay %s, until next time i'll not bother you."%name)
+        output="okay %s, until next time i'll not bother you."%name
+        _speak_(output)
         sys.exit(0)
 
     if command.lower() == "bye" or command.lower() == "goodbye":
-        _speak_("okay %s, bye for now."%name)
+        output="okay %s, bye for now."%name
+        _speak_(output)
         sys.exit(0)
-    if command.lower() == "what does Hana stands for" or command.lower() == "what does Hannah stands for":
-        _speak_("%s,hana stands on : hyper annoying neat assistant"%name)
+    if command.lower() == "what does Anna stands for" or command.lower() == "what does Ana stands for":
+        output="%s,Anna stands on : artificial nural network assistant"%name
+        _speak_(output)
     try:
         _speak_(pro.command_proccess(command))
     except :
         pass
-    cou += 1
+    return output
+tkpage=tk.Tk()
+tkpage.title('Anna')
+tkpage.geometry('300x200+1200+0')
+annabox=tk.Label(tkpage,text='In which way you want to login,\n 1- with username and password \n or 2- with face recognation?',font=('Arial',10),fg='white')
+annabox.grid(row=1,column=1)
+name=loginway()
+custbox=main('sadra')
+custbox.grid(row=2,column=1)
+tkpage.mainloop()
