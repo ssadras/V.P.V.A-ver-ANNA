@@ -10,7 +10,10 @@ import threading
 import gtts
 import sys
 import cv2
-import tkinter as tk
+from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+import easygui
 from PIL import Image, ImageTk
 import os #; print(len(os.listdir("\\V.P.V.A\\assets")))
 # starting
@@ -139,50 +142,23 @@ namevar=''
 passvar=''
 userpasscheck=''
 loginpage=''
-def checkuserpass ():
-    global namevar,passvar,userpasscheck
+def checkuserpass (name,password):
     userpassfile=open('userpass.txt','r')
     userpasslist=userpassfile.readlines()
     count=0
     for userpass in userpasslist:
         userpassSplit=userpass.split(',')
         user=userpassSplit[0]
-        password=userpassSplit[1][:-1]
+        passwordi=userpassSplit[1][:-1]
         count+=1
-        if user.lower()==namevar.get().lower() and password.lower()==passvar.get().lower():
+        if user.lower()==name.lower() and passwordi==password:
             return user
     return 'nobody'
-def loginbutton (event):
-    global namevar,passvar,userpasscheck,loginpage
-    user=checkuserpass()
-    if user=='nobody':
-        userpasscheck=''
-        #namentry.delete(0,len(namevar))
-        #passentry.delete(0,len(namevar))
-    elif user!='':
-        userpasscheck=user
-        loginpage.destroy()
-def loginpagetk ():
-    global namevar,passvar,userpasscheck,loginpage
-    loginpage=tk.Tk()
-    loginpage.title('Anna - Login')
-    loginpage.geometry('425x100+450+300')
-    namevar=tk.StringVar()
-    passvar=tk.StringVar()
-    nametext=tk.Label(loginpage,text='Username ',font=('Arial',15))
-    passtext=tk.Label(loginpage,text='Password ',font=('Arial',15))
-    namentry=tk.Entry(loginpage,font=('Arial',15),textvariable=namevar)
-    passentry=tk.Entry(loginpage,font=('Arial',15),textvariable=passvar,show="*")
-    loginbut=tk.Button(loginpage,text='Login',font=('Arial',15))
-    nametext.grid(column=2,row=2)
-    namentry.grid(column=4,row=2)
-    passtext.grid(column=2,row=4)
-    passentry.grid(column=4,row=4)
-    loginbut.grid(column=3,row=6)
-    loginbut.bind('<Button-1>',loginbutton)
-    loginpage.mainloop()
+def loginpage ():
+    name=easygui.enterbox(msg='Enter your name.', title='username')
+    password=easygui.passwordbox(msg='Enter your password.', title='Password')
+    return(checkuserpass (name,password))
 def loginway ():
-    #loginpagetk()
     com="In which way you want to login, 1- with username and password, or 2- with face recognation?"
     _speak_(com)
     command = get_audio(7, com)
@@ -205,8 +181,10 @@ def loginway ():
             sys.exit(0)
         return (name)
     else:
-        loginpagetk()
-        name=userpasscheck
+        name=loginpage()
+    if name=='nobody':
+        easygui.msgbox(msg='The username or password is incorect',title='Exit')
+        sys.exit()
     return name
 def gif ():
     pg.init()
@@ -221,19 +199,12 @@ def gif ():
         pg.display.update()
         pg.time.Clock().tick(60)
     pg.quit()
-def main (event):
-    global name,output,annabox,custbox,answerbox
-    annabox.destroy()
-    custbox.destroy()
-    answerbox.destroy()
-    annabox=tk.Label(tkpage,text='how can i help you?',font=('Arial',10),fg='green')
-    annabox.pack(side='top')
+def main ():
+    global name,output
     com = "%s How can i help you ?"%name
     _speak_(com)
 
     command = get_audio(7, com)
-    custbox=tk.Label(tkpage,text=command)
-    custbox.pack(side='top')
     if command.lower() == "nothing" or command.lower() == "no":
         output="okay %s, until next time i'll not bother you."%name
         _speak_(output)
@@ -252,22 +223,22 @@ def main (event):
         _speak_(pro.command_proccess(command))
     except :
         pass
-    answerbox=tk.Label(tkpage,text=output,font=('Arial',12),fg='red')
-    answerbox.pack(side='top')
-tkpage=tk.Tk()
-tkpage.title('Anna')
-tkpage.geometry('300x200+1200+0')
-annabox=tk.Label(tkpage,text='how can i help you?',font=('Arial',10),fg='green')
-annabox.pack(side='top')
+    return()
 name=loginway()
-custbox=tk.Label(tkpage,text=' ')
-custbox.pack(side='top')
-answerbox=tk.Label(tkpage,text=' ',font=('Arial',12),fg='red')
-answerbox.pack(side='top')
-iconim=Image.open('O97POM0.jpg')
-iconim.thumbnail((50,50), Image.ANTIALIAS)
-iconim=ImageTk.PhotoImage(iconim)
-speechbut=tk.Button(tkpage,image=iconim)
-speechbut.pack(side='bottom')
-speechbut.bind('<Button-1>',main)
-tkpage.mainloop()
+app=QApplication(sys.argv)
+window =QWidget()
+window.setGeometry(1100, 0, 300, 300)
+window.setWindowTitle("ANNA")
+window.setWindowIcon(QtGui.QIcon('default.png'))
+quitb =QPushButton("Quit", window)
+quitb.clicked.connect(QCoreApplication.instance().quit)
+quitb.resize(50,25)
+quitb.move(125,275)
+speakb =QPushButton('', window)
+speakb.setIcon(QtGui.QIcon('O97POM0.jpg'))
+speakb.setIconSize(QSize(40,40))
+speakb.resize(100,50)
+speakb.move(100,225)
+speakb.clicked.connect(main)
+window.show()
+app.exec_()
