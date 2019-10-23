@@ -227,6 +227,7 @@ def main ():
         _speak_(pro.command_proccess(command))
     except :
         pass
+    text.insertPlainText(output+".\n")
     return()
 
 class qtgui(QWidget):
