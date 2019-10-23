@@ -200,7 +200,11 @@ def gif ():
         pg.time.Clock().tick(60)
     pg.quit()
 def main ():
-    global name,output
+    global name,output,count
+    if count==0:
+        name=loginway()
+        count+=1
+        return()
     com = "%s How can i help you ?"%name
     _speak_(com)
 
@@ -249,7 +253,8 @@ class qtgui(QWidget):
         else:
             event.ignore()
 if __name__ == '__main__':
-    name=loginway()
+    name=''
+    count=0
     app = QApplication(sys.argv)
     ex = qtgui()
     sys.exit(app.exec_())
