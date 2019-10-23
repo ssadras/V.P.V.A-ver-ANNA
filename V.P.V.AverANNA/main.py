@@ -224,21 +224,32 @@ def main ():
     except :
         pass
     return()
-name=loginway()
-app=QApplication(sys.argv)
-window =QWidget()
-window.setGeometry(1100, 0, 300, 300)
-window.setWindowTitle("ANNA")
-window.setWindowIcon(QtGui.QIcon('default.png'))
-quitb =QPushButton("Quit", window)
-quitb.clicked.connect(QCoreApplication.instance().quit)
-quitb.resize(50,25)
-quitb.move(125,275)
-speakb =QPushButton('', window)
-speakb.setIcon(QtGui.QIcon('O97POM0.jpg'))
-speakb.setIconSize(QSize(40,40))
-speakb.resize(100,50)
-speakb.move(100,225)
-speakb.clicked.connect(main)
-window.show()
-app.exec_()
+
+class qtgui(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+    def initUI(self):
+        speakb =QPushButton('', self)
+        speakb.setIcon(QtGui.QIcon('AnaAsset2.gif'))
+        speakb.setIconSize(QSize(40,40))
+        speakb.resize(100,50)
+        speakb.move(100,250)
+        speakb.clicked.connect(main)
+        self.setGeometry(1100, 0, 300, 300)
+        self.setWindowTitle("ANNA")
+        self.setWindowIcon(QtGui.QIcon('default.png'))
+        self.show()
+    def closeEvent(self, event):  
+        reply = QMessageBox.question(self, 'Message',
+            "Are you sure to quit?", QMessageBox.Yes | 
+            QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+if __name__ == '__main__':
+    name=loginway()
+    app = QApplication(sys.argv)
+    ex = qtgui()
+    sys.exit(app.exec_())
