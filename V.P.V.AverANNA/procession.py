@@ -4,11 +4,13 @@ import wikipedia as wiki
 import playsound as pl
 import regex as re
 import gtts
+import sys
 import cv2
 import os
 
 
-
+software = sys.platform
+terminal_command = "start" if software.lower() == "win32" else ""
 def _speak_(input):
     toSay = gtts.gTTS(text=input, lang="en-US", slow=False)
     toSay.save ("input-computer.mp3")
@@ -63,7 +65,7 @@ def command_proccess(input_data):
 			if command[index+1] == "pycharm":
 				req.open_app("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\JetBrains\\JetBrains PyCharm 2019.1.1.exe")
 			'''
-			req.commandline("start %s"%command[index+1])
+			req.commandline("%s %s"%(terminal_command, command[index+1]))
 	if len(searchs) != 0:
 		for value, index in searchs:
 			_speak_("here's what I found on the web:")
