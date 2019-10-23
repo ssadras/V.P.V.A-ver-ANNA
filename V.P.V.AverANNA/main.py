@@ -200,14 +200,14 @@ def gif ():
         pg.time.Clock().tick(60)
     pg.quit()
 def main ():
-    global name,output,count
+    global name,output,count,text
     if count==0:
         name=loginway()
         count+=1
         return()
     com = "%s How can i help you ?"%name
     _speak_(com)
-
+    text.insertPlainText(com+".\n")
     command = get_audio(7, com)
     if command.lower() == "nothing" or command.lower() == "no":
         output="okay %s, until next time i'll not bother you."%name
@@ -234,6 +234,11 @@ class qtgui(QWidget):
         super().__init__()
         self.initUI()
     def initUI(self):
+        global text
+        text=QPlainTextEdit(self)
+        text.insertPlainText("please login.\n")
+        text.move(10,10)
+        text.resize(280,200)
         speakb =QPushButton('', self)
         speakb.setIcon(QtGui.QIcon('AnaAsset2.gif'))
         speakb.setIconSize(QSize(40,40))
@@ -253,6 +258,7 @@ class qtgui(QWidget):
         else:
             event.ignore()
 if __name__ == '__main__':
+    text=''
     name=''
     count=0
     app = QApplication(sys.argv)
