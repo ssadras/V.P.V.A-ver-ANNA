@@ -205,7 +205,7 @@ def gif ():
         pg.time.Clock().tick(60)
     pg.quit()
 def main ():
-    global name,output,count,text
+    global name,output,count,text,annatextcolor,youtextcolor
     if count==0:
         name=loginway()
         count+=1
@@ -219,7 +219,7 @@ def main ():
     if command.lower() == "nothing" or command.lower() == "no":
         output="okay %s, until next time i'll not bother you."%name
         _speak_(output)
-        sys.exit(0)
+        #sys.exit(0)
 
     elif command.lower() == "bye" or command.lower() == "goodbye":
         output="okay %s, bye for now."%name
@@ -266,6 +266,8 @@ class qtgui(QWidget):
         else:
             event.ignore()
 if __name__ == '__main__':
+    annatextcolor=QColor(0, 255, 0)
+    youtextcolor=QColor(255, 0, 0)
     text=''
     name=''
     count=0
