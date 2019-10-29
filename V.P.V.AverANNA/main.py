@@ -130,13 +130,13 @@ def get_audio(limit, starter):
             rObj = sr.Recognizer()
 
             with sr.Microphone() as src:
-                print("talk to me ...")
+                #print("talk to me ...")
                 _speak_(starter)
                 '''
                 listen and record the user s command
                 '''
-                audio = rObj.listen(src, phrase_time_limit=limit)
-            print("limit finished")
+                audio = rObj.listen(src)
+            #print("limit finished")
             print(exc)
 namevar=''
 passvar=''
@@ -159,7 +159,9 @@ def loginpage ():
     password=easygui.passwordbox(msg='Enter your password.', title='Password')
     return(checkuserpass (name,password))
 def loginway ():
+    global text
     com="In which way you want to login, 1- with username and password, or 2- with face recognation?"
+    text.insertPlainText('ANNA: '+com+".\n")
     _speak_(com)
     command = get_audio(7, com)
     if ('face' in command.lower()) or ('recognation' in command.lower()):
@@ -185,6 +187,9 @@ def loginway ():
     if name=='nobody':
         easygui.msgbox(msg='The username or password is incorect',title='Exit')
         sys.exit()
+    _speak_('Hello '+name)
+    text.insertPlainText('ANNA: Hello '+name+".\n")
+    name=name.split()[0]
     return name
 def gif ():
     pg.init()
@@ -205,10 +210,12 @@ def main ():
         name=loginway()
         count+=1
         return()
+    count+=1
     com = "%s How can i help you ?"%name
     _speak_(com)
-    text.insertPlainText(com+".\n")
+    text.insertPlainText('ANNA: '+com+".\n")
     command = get_audio(7, com)
+    text.insertPlainText(name+': '+command+".\n")
     if command.lower() == "nothing" or command.lower() == "no":
         output="okay %s, until next time i'll not bother you."%name
         _speak_(output)
@@ -217,7 +224,7 @@ def main ():
     elif command.lower() == "bye" or command.lower() == "goodbye":
         output="okay %s, bye for now."%name
         _speak_(output)
-        #sys.exit(0)
+        sys.exit(0)
     elif command.lower() == "what does anna stands for" or command.lower() == "what does ana stands for" or command.lower() == "what does anna stand for" or command.lower() == "what does ana stand for":
         output="%s,Anna stands on :\n artificial nural network assistant"%name
         _speak_(output)
@@ -227,7 +234,7 @@ def main ():
         _speak_(pro.command_proccess(command))
     except :
         pass
-    text.insertPlainText(output+".\n")
+    text.insertPlainText('ANNA: '+output+".\n")
     return()
 
 class qtgui(QWidget):
