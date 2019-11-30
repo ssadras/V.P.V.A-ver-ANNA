@@ -45,9 +45,13 @@ for i in range (1,(sheet.max_row)+1):
     dataframe = tfidf (sheet.cell(row=i,column=1).value , words , dataframe)
 
 #create and fit model
-ml_model = MeanShift(bandwidth=1)
+ml_model = MeanShift(bandwidth=25)
 ml_model.fit(dataframe)
 model_labels = ml_model.labels_
 model_cluster_centers = ml_model.cluster_centers_
+
+# checking the output
 print(model_labels)
 print(model_cluster_centers)
+unique, counts = np.unique(model_labels, return_counts=True)
+print(dict(zip(unique, counts)))
