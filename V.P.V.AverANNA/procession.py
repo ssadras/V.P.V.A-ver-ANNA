@@ -2,7 +2,7 @@ import speech_recognition as sr
 import requirements as req
 import wikipedia as wiki
 import playsound as pl
-import regex as re
+import RegularExpression as re
 import gtts
 import sys
 import cv2
