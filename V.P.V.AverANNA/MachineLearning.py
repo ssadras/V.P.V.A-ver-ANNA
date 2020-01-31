@@ -1,57 +1,210 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 import pandas as pd
 import numpy as np
-import openpyxl as xl
-import wordfreq as wq
 from nltk.stem import PorterStemmer
-from sklearn.cluster import MeanShift
+from nltk.tokenize import word_tokenize 
+from sklearn.neural_network import MLPClassifier
 
-# defs
-def tfidf (sentence , words,data_f):
-    pst = PorterStemmer()
-    s_sente = sentence.split()
-    for i in range (len(s_sente)):
-        s_sente[i]=pst.stem(s_sente[i])
-    arr=[]
-    for i in range (len(words)):
-        try:
-            word = float(words[i])
-        except :
-            if len(words[i])>1:
-                arr.append((s_sente.count(words[i])/len(s_sente))*100)
-    #print(len(arr),len(words),len(data_f.columns))
-    data_f.loc[sentence]= arr
-    return(data_f)
 
-# opening excel file
-workbook = xl.load_workbook(filename = 'eng-sentences.xlsx')
-sheet = workbook['Sheet1']
+# In[2]:
 
-# create dataframe
-dataframe = pd.DataFrame()
 
-# getting words from wordfreq
-words = words = wq.top_n_list('en',21000)
+def preprocessing (sentence):
+    ps = PorterStemmer()
+    process_sen = []
+    sentence=word_tokenize(sentence)
+    remove_words=['!','.','i','me','my','myself','we','our','ours','ourselves','you','your','yours','yourself','yourselves','he','him','his','himself','she','her','hers','herself','it','its','itself','they','them','their','theirs','themselves','what','which','who','whom','this','that','these','those','am','is','are','was','were','be','been','being','have','has','had','having','do','does','did','doing','a','an','the','and','but','if','or','because','as','until','while','of','at','by','for','with','about','against','between','into','through','during','before','after','above','below','to','from','up','down','in','out','on','off','over','under','again','further','then','once','here','there','when','where','why','how','all','any','both','each','few','more','most','other','some','such','no','nor','not','only','own','same','so','than','too','very','s','t','can','will','just','don','should','now']
+    for i in range(len(sentence)):
+        if not(sentence[i] in remove_words):
+            try:
+                int(sentence[i])
+            except:
+                process_sen.append(ps.stem(sentence[i]))
+    return (process_sen)
+    
 
-# changeing dataFrame
-for i in range (len(words)):
-    try:
-        word = float(words[i])
-    except :
-        if len(words[i])>1:
-            dataframe[words[i]]=[0]
 
-# importing sentences to dataframe
-for i in range (1,(sheet.max_row)+1):
-    dataframe = tfidf (sheet.cell(row=i,column=1).value , words , dataframe)
+# In[3]:
 
-#create and fit model
-ml_model = MeanShift(bandwidth=25)
-ml_model.fit(dataframe)
-model_labels = ml_model.labels_
-model_cluster_centers = ml_model.cluster_centers_
 
-# checking the output
-print(model_labels)
-print(model_cluster_centers)
-unique, counts = np.unique(model_labels, return_counts=True)
-print(dict(zip(unique, counts)))
+print(preprocessing('2 plus 2 equals'))
+
+
+# In[4]:
+
+
+math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
+              ,'cosine','integral','identical','math']
+weather_words = ['weather','air','wind','rain','snow','sun','cloud','water']
+clock_words = ['time','clock','alarm','stopwatch','timer']
+
+
+# In[5]:
+
+
+datasheet = pd.DataFrame()
+
+
+# In[6]:
+
+
+column_names = math_words+weather_words+clock_words+['target']
+ps = PorterStemmer()
+for i in range (len(column_names)):
+    column_names[i]=ps.stem(column_names[i])
+    datasheet[column_names[i]]=[0]
+
+
+# In[7]:
+
+
+datasheet.drop(0,axis=0,inplace=True)
+
+
+# In[8]:
+
+
+datasheet
+
+
+# In[9]:
+
+
+def add_sample (sentence_list,sentence,target):
+    global datasheet,column_names
+    data=[0]*len(column_names)
+    for i in range(len(column_names)-1):
+        if column_names[i] in sentence_list:
+            data[i]=1
+    data[-1]=target
+    datasheet.loc[sentence]=data
+    return datasheet
+
+
+# In[19]:
+
+
+rows = [['2 plus 2 equals what',1],['what time is it ?',2]
+        ,['how is the weather ?',3],['how are you ?',4]
+       ,['4 multiplication 2 equals waht',1],['radical of 2',1]
+        ,['sinus of 2 equals waht ?',1],['is it sunny ?',3],['is it cloudy ?',3],['is it rainy ?',3]
+        ,['set an event from 8 o\'clock to 10 o\'clock',2],['start stopwatch.',2],['set a 5 minute timer',2]]
+
+
+# In[20]:
+
+
+for i in range (len(rows)):
+    datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
+
+
+# In[21]:
+
+
+datasheet
+
+
+# In[22]:
+
+
+ml_model = MLPClassifier(hidden_layer_sizes=(2))
+
+
+# In[23]:
+
+
+ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'])
+
+
+# In[24]:
+
+
+def make_sample (sentence_list,sentence):
+    global column_names
+    data=[0]*(len(column_names)-1)
+    for i in range(len(column_names)-1):
+        if column_names[i] in sentence_list:
+            data[i]=1
+    return data
+
+
+# In[28]:
+
+
+def predict_mode (sentence):
+    global ml_model
+    function_list = ['math','clock','weather','other']
+    predict = ml_model.predict([make_sample(preprocessing(sentence),sentence)])
+    for i in range (len(function_list)):
+        if predict==i+1:
+            return function_list[i]
+
+
+# In[73]:
+
+
+def radical_order (sentence):
+    sentence_list=sentence.split()
+    if 'order' in sentence_list:
+        for i in range (len(sentence_list)):
+            if sentence_list[i]=='order' and i+1<len(sentence_list):
+                try :
+                    int(sentence_list[i+1])
+                    output='**(1 / '+sentence_list[i+1]+')'
+                    sentence_list[i+1]='None'
+                    return (output,sentence_list)
+                except:
+                    if i-1>=0:
+                        try :
+                            int(sentence_list[i-1])
+                            output='**(1 / '+sentence_list[i-1]+')'
+                            sentence_list[i-1]='None'
+                            return (output,sentence_list)
+                        except:
+                            2+2
+    else:
+        return ("**0.5",sentence_list)
+
+
+# In[74]:
+
+
+def change_math_predict_mode (sentence):
+    sentence_list=sentence.split()
+    change_words = [['plus','+'],['equal','='],['radical','function']]
+    output=''
+    for i in range (len(sentence_list)):
+        for j in range (len(change_words)):
+            try :
+                output+=str(int(sentence_list[i]))
+                break
+            except:
+                if (change_words[j][0] in sentence_list[i]) and change_words[j][0]!='radical':
+                    output+=change_words[j][1]
+                    break
+                if (change_words[j][0]==sentence_list[i]) and change_words[j][0]=='radical':
+                    output+=sentence_list[i+1]
+                    rad=radical_order(sentence)
+                    output+=rad[0]
+                    sentence_list=rad[1]
+                    sentence_list[i+1]='None'
+                    break
+    return output
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
