@@ -1,19 +1,23 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[40]:
-
-
+#Imports
 import pandas as pd
 import numpy as np
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize 
 from sklearn.neural_network import MLPClassifier
-
-
-# In[41]:
-
-
+#Globals
+math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
+              ,'cosine','integral','identical','math']
+weather_words = ['weather','air','wind','rain','snow','sun','cloud','water']
+clock_words = ['time','clock','alarm','stopwatch','timer']
+datasheet = pd.DataFrame()
+rows = [['2 plus 2 equals what',1],['what time is it ?',2]
+        ,['how is the weather ?',3],['how are you ?',4]
+       ,['4 multiplication 2 equals waht',1],['radical of 2',1]
+        ,['sinus of 2 equals waht ?',1],['is it sunny ?',3],['is it cloudy ?',3],['is it rainy ?',3]
+        ,['set an event from 8 o\'clock to 10 o\'clock',2],['start stopwatch.',2],['set a 5 minute timer',2]]
+column_names = math_words+weather_words+clock_words+['target']
+ml_model = MLPClassifier(hidden_layer_sizes=(2))
+#defs
 def preprocessing (sentence):
     ps = PorterStemmer()
     process_sen = []
@@ -26,26 +30,6 @@ def preprocessing (sentence):
             except:
                 process_sen.append(ps.stem(sentence[i]))
     return (process_sen)
-    
-
-
-# In[42]:
-
-
-math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
-              ,'cosine','integral','identical','math']
-weather_words = ['weather','air','wind','rain','snow','sun','cloud','water']
-clock_words = ['time','clock','alarm','stopwatch','timer']
-
-
-# In[43]:
-
-
-datasheet = pd.DataFrame()
-
-
-# In[44]:
-
 
 def add_sample (sentence_list,sentence,target):
     global datasheet,column_names
@@ -57,26 +41,6 @@ def add_sample (sentence_list,sentence,target):
     datasheet.loc[sentence]=data
     return datasheet
 
-
-# In[45]:
-
-
-rows = [['2 plus 2 equals what',1],['what time is it ?',2]
-        ,['how is the weather ?',3],['how are you ?',4]
-       ,['4 multiplication 2 equals waht',1],['radical of 2',1]
-        ,['sinus of 2 equals waht ?',1],['is it sunny ?',3],['is it cloudy ?',3],['is it rainy ?',3]
-        ,['set an event from 8 o\'clock to 10 o\'clock',2],['start stopwatch.',2],['set a 5 minute timer',2]]
-
-
-# In[46]:
-
-
-ml_model = MLPClassifier(hidden_layer_sizes=(2))
-
-
-# In[47]:
-
-
 def make_sample (sentence_list,sentence):
     global column_names
     data=[0]*(len(column_names)-1)
@@ -84,11 +48,6 @@ def make_sample (sentence_list,sentence):
         if column_names[i] in sentence_list:
             data[i]=1
     return data
-
-
-# In[48]:
-
-
 def predict_mode (sentence):
     global ml_model
     function_list = ['math','clock','weather','other']
@@ -96,11 +55,6 @@ def predict_mode (sentence):
     for i in range (len(function_list)):
         if predict==i+1:
             return function_list[i]
-
-
-# In[49]:
-
-
 def radical_order (sentence):
     sentence_list=sentence.split()
     if 'order' in sentence_list:
@@ -122,11 +76,6 @@ def radical_order (sentence):
                             2+2
     else:
         return ("**0.5",sentence_list)
-
-
-# In[50]:
-
-
 def change_math_predict_mode (sentence):
     sentence_list=sentence.split()
     change_words = [['plus','+'],['equal','='],['radical','function']]
@@ -148,14 +97,8 @@ def change_math_predict_mode (sentence):
                     sentence_list[i+1]='None'
                     break
     return output
-
-
-# In[51]:
-
-
 def FirstCou_Machine ():
-    global math_words,weather_words,clock_words,datasheet,rows,ml_model
-    column_names = math_words+weather_words+clock_words+['target']
+    global math_words,weather_words,clock_words,datasheet,rows,ml_model,column_names
     ps = PorterStemmer()
     for i in range (len(column_names)):
         column_names[i]=ps.stem(column_names[i])
@@ -165,28 +108,12 @@ def FirstCou_Machine ():
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
     ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'])
     return
-
-
-# In[52]:
-
-
 def MachineLearning (sentence,cou):
     if cou==1:
         FirstCou_Machine()
+        if predict_mode(sentence)=="math":
+            print(change_math_predict_mode (sentence))
         print(predict_mode(sentence))
     else :
         print(predict_mode(sentence))
     return
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
