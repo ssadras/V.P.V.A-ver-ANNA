@@ -1,0 +1,14 @@
+2 plus 2 equals what,1
+what time is it ?,2
+how is the weather ?,3
+how are you ?,4
+4 multiplication 2 equals waht,1
+radical of 2,1
+sinus of 2 equals waht ?,1
+is it sunny ?,3
+is it cloudy ?,3
+is it rainy ?,3
+set an event from 8 o\'clock to 10 o\'clock,2
+start stopwatch,2
+set a 5 minute timer,2
+
