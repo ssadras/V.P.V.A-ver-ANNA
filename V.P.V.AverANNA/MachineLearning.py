@@ -1,23 +1,84 @@
-#Imports
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[132]:
+
+
 import pandas as pd
 import numpy as np
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize 
 from sklearn.neural_network import MLPClassifier
-#Globals
+
+
+# In[133]:
+
+
 math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
               ,'cosine','integral','identical','math']
 weather_words = ['weather','air','wind','rain','snow','sun','cloud','water']
 clock_words = ['time','clock','alarm','stopwatch','timer']
+email_words = ['email','send','gmail','yahoo']
+anna_words = ['anna']
+search_words = ['search','find','meaning']
+browse_words = ['browse']
+open_words = ['open']
+
+
+# In[134]:
+
+
 datasheet = pd.DataFrame()
-rows = [['2 plus 2 equals what',1],['what time is it ?',2]
-        ,['how is the weather ?',3],['how are you ?',4]
-       ,['4 multiplication 2 equals waht',1],['radical of 2',1]
-        ,['sinus of 2 equals waht ?',1],['is it sunny ?',3],['is it cloudy ?',3],['is it rainy ?',3]
-        ,['set an event from 8 o\'clock to 10 o\'clock',2],['start stopwatch.',2],['set a 5 minute timer',2]]
-column_names = math_words+weather_words+clock_words+['target']
+
+
+# In[135]:
+
+
+rows = []
+
+
+# In[136]:
+
+
 ml_model = MLPClassifier(hidden_layer_sizes=(2))
-#defs
+
+
+# In[137]:
+
+
+column_names = math_words+weather_words+clock_words+email_words+anna_words
+column_names += search_words+browse_words+open_words+['target']
+
+
+# In[138]:
+
+
+def TxtToRows ():
+    global rows
+    file=open('sample-sentences.txt','r')
+    lines = file.readlines()
+    for i in range (len(lines)-1):
+        line = lines[i].split(',')
+        rows.append([line[0],int(line[1][:-1])])
+    file.close()
+    return
+
+
+# In[139]:
+
+
+def RowsToTxt ():
+    global rows
+    file = open('sample-sentences.txt','w')
+    for i in range (len(rows)):
+        file.write(rows[i][0]+','+str(rows[i][1])+'\n')
+    file.close()
+    return
+
+
+# In[140]:
+
+
 def preprocessing (sentence):
     ps = PorterStemmer()
     process_sen = []
@@ -30,6 +91,11 @@ def preprocessing (sentence):
             except:
                 process_sen.append(ps.stem(sentence[i]))
     return (process_sen)
+    
+
+
+# In[141]:
+
 
 def add_sample (sentence_list,sentence,target):
     global datasheet,column_names
@@ -41,6 +107,10 @@ def add_sample (sentence_list,sentence,target):
     datasheet.loc[sentence]=data
     return datasheet
 
+
+# In[142]:
+
+
 def make_sample (sentence_list,sentence):
     global column_names
     data=[0]*(len(column_names)-1)
@@ -48,6 +118,11 @@ def make_sample (sentence_list,sentence):
         if column_names[i] in sentence_list:
             data[i]=1
     return data
+
+
+# In[143]:
+
+
 def predict_mode (sentence):
     global ml_model
     function_list = ['math','clock','weather','other']
@@ -55,6 +130,11 @@ def predict_mode (sentence):
     for i in range (len(function_list)):
         if predict==i+1:
             return function_list[i]
+
+
+# In[144]:
+
+
 def radical_order (sentence):
     sentence_list=sentence.split()
     if 'order' in sentence_list:
@@ -76,6 +156,11 @@ def radical_order (sentence):
                             2+2
     else:
         return ("**0.5",sentence_list)
+
+
+# In[145]:
+
+
 def change_math_predict_mode (sentence):
     sentence_list=sentence.split()
     change_words = [['plus','+'],['equal','='],['radical','function']]
@@ -97,8 +182,14 @@ def change_math_predict_mode (sentence):
                     sentence_list[i+1]='None'
                     break
     return output
+
+
+# In[146]:
+
+
 def FirstCou_Machine ():
     global math_words,weather_words,clock_words,datasheet,rows,ml_model,column_names
+    TxtToRows()
     ps = PorterStemmer()
     for i in range (len(column_names)):
         column_names[i]=ps.stem(column_names[i])
@@ -108,12 +199,45 @@ def FirstCou_Machine ():
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
     ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'])
     return
+
+
+# In[147]:
+
+
+def UpdateML (sentence,target):
+    global rows,datasheet
+    rows += [sentence,target]
+    for i in range (len(rows)):
+        datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
+    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'])
+    return
+
+
+# In[148]:
+
+
 def MachineLearning (sentence,cou):
     if cou==1:
         FirstCou_Machine()
-        if predict_mode(sentence)=="math":
-            print(change_math_predict_mode (sentence))
-        print(predict_mode(sentence))
+        pred=predict_mode(sentence)
+        UpdateML(sentence,pred)
+        print(pred)
     else :
-        print(predict_mode(sentence))
+        pred=predict_mode(sentence)
+        UpdateML(sentence,pred)
+        print(pred)
+    RowsToTxt()
     return
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
