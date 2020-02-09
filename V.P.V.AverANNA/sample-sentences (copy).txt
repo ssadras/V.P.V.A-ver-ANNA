@@ -1,7 +1,7 @@
 2 plus 2 equals what,1
 what time is it ?,2
 how is the weather ?,3
-how are you ?,4
+how are you ?,9
 4 multiplication 2 equals waht,1
 radical of 2,1
 sinus of 2 equals waht ?,1
@@ -11,4 +11,31 @@ is it rainy ?,3
 set an event from 8 o\'clock to 10 o\'clock,2
 start stopwatch,2
 set a 5 minute timer,2
-
+how's The Weather?,3
+how's The Weather?,3
+what are you doing now?,9
+what time is it?,2
+is it sunny today?,3
+cosin of 5,1
+sinus of 90,1
+is it cloudy today?,3
+is it hot tommorow?,3
+how's The Weather?,3
+send a email to hassan.,4
+open google chrome.,8
+search about fishs.,6
+what does anna stands for?,5
+how anna can help me?,5
+is anna a human?,5
+can i help you mester?,9
+why do i need anna?,5
+search about tablets.,6
+open firefox for me?,8
+open calculator.,8
+open mocrosoft office.,8
+open word.,8
+open excel,8
+open powerpoint.,8
+open mocrosoft office 2016.,8
+search in google about me.,6
+is sinus of 180 equals to 0?,1
