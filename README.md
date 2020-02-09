@@ -5,9 +5,7 @@ first release on july of 2019...
 
 Virtual Personal Voice Assistant is the main branch of this project...
 
-this prject splits into two branchs : 
-        1 - ANNA : Artificial Neural Network Assistant/
-        2 - HANA : Hyper Annoying NEAT* Assistant (*Neural Electronic Artitficial Tongue)/
+ANNA : Artificial Neural Network Assistant
 
 update : now with e-mail assistant ... send your mails right from the ANNA
 
@@ -22,6 +20,3 @@ update : now with face recognition software ... use your face to unlock ANNA jus
 update : now with group face recognition ...
 
 update : now beatiful gui 
-
-
-![ screen shot ](https://github.com/sadrass/V.P.V.A-ver-ANNA/master/V.P.V.AverANNA/frame_040_delay-0.04s.png)
