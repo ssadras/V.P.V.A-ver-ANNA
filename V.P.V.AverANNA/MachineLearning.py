@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[132]:
+# In[21]:
 
 
 import pandas as pd
@@ -11,7 +11,7 @@ from nltk.tokenize import word_tokenize
 from sklearn.neural_network import MLPClassifier
 
 
-# In[133]:
+# In[22]:
 
 
 math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
@@ -21,36 +21,36 @@ clock_words = ['time','clock','alarm','stopwatch','timer']
 email_words = ['email','send','gmail','yahoo']
 anna_words = ['anna']
 search_words = ['search','find','meaning']
-browse_words = ['browse']
-open_words = ['open']
+browse_words = ['browse','url']
+open_words = ['open','firefox','chrome','calculator','powerpoint','excel','word','office']
 
 
-# In[134]:
+# In[23]:
 
 
 datasheet = pd.DataFrame()
 
 
-# In[135]:
+# In[24]:
 
 
 rows = []
 
 
-# In[136]:
+# In[25]:
 
 
 ml_model = MLPClassifier(hidden_layer_sizes=(2))
 
 
-# In[137]:
+# In[26]:
 
 
 column_names = math_words+weather_words+clock_words+email_words+anna_words
 column_names += search_words+browse_words+open_words+['target']
 
 
-# In[138]:
+# In[27]:
 
 
 def TxtToRows ():
@@ -64,7 +64,7 @@ def TxtToRows ():
     return
 
 
-# In[139]:
+# In[28]:
 
 
 def RowsToTxt ():
@@ -76,7 +76,7 @@ def RowsToTxt ():
     return
 
 
-# In[140]:
+# In[29]:
 
 
 def preprocessing (sentence):
@@ -94,7 +94,7 @@ def preprocessing (sentence):
     
 
 
-# In[141]:
+# In[30]:
 
 
 def add_sample (sentence_list,sentence,target):
@@ -108,7 +108,7 @@ def add_sample (sentence_list,sentence,target):
     return datasheet
 
 
-# In[142]:
+# In[31]:
 
 
 def make_sample (sentence_list,sentence):
@@ -120,19 +120,17 @@ def make_sample (sentence_list,sentence):
     return data
 
 
-# In[143]:
+# In[32]:
 
 
 def predict_mode (sentence):
     global ml_model
-    function_list = ['math','clock','weather','other']
+    function_list = ['math','clock','weather','email','anna','search','browse','open','other']
     predict = ml_model.predict([make_sample(preprocessing(sentence),sentence)])
-    for i in range (len(function_list)):
-        if predict==i+1:
-            return function_list[i]
+    return (function_list[int(predict)-1],int(predict))
 
 
-# In[144]:
+# In[33]:
 
 
 def radical_order (sentence):
@@ -158,7 +156,7 @@ def radical_order (sentence):
         return ("**0.5",sentence_list)
 
 
-# In[145]:
+# In[34]:
 
 
 def change_math_predict_mode (sentence):
@@ -184,7 +182,7 @@ def change_math_predict_mode (sentence):
     return output
 
 
-# In[146]:
+# In[35]:
 
 
 def FirstCou_Machine ():
@@ -201,43 +199,73 @@ def FirstCou_Machine ():
     return
 
 
-# In[147]:
+# In[36]:
 
 
 def UpdateML (sentence,target):
     global rows,datasheet
-    rows += [sentence,target]
+    rows += [[sentence,target]]
     for i in range (len(rows)):
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
     ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'])
     return
 
 
-# In[148]:
+# In[37]:
 
 
 def MachineLearning (sentence,cou):
     if cou==1:
         FirstCou_Machine()
-        pred=predict_mode(sentence)
-        UpdateML(sentence,pred)
-        print(pred)
+        (predSen,predNum)=predict_mode(sentence)
+        UpdateML(sentence,predNum)
+        print(predSen)
     else :
-        pred=predict_mode(sentence)
-        UpdateML(sentence,pred)
-        print(pred)
+        (predSen,predNum)=predict_mode(sentence)
+        UpdateML(sentence,predNum)
+        print(predSen)
     RowsToTxt()
     return
 
 
-# In[ ]:
+# In[38]:
 
 
+def Train_MachineLearning (sentence,cou,TrueTarget):
+    # math=1 , clock=2 , weather=3 , email=4 , anna=5 , search=6 , browse=7 , open=8 , other=9
+    if cou==1:
+        FirstCou_Machine()
+        (predSen,predNum)=predict_mode(sentence)
+        print(predNum==TrueTarget)
+        UpdateML(sentence,TrueTarget)
+        print(predSen)
+    else :
+        (predSen,predNum)=predict_mode(sentence)
+        print(predNum==TrueTarget)
+        UpdateML(sentence,TrueTarget)
+        print(predSen)
+    RowsToTxt()
+    return
 
 
-
-# In[ ]:
-
+# In[39]:
 
 
+Train_MachineLearning("how's The Weather?",1,3)
+
+
+# In[40]:
+
+
+print("math=1 , clock=2 , weather=3 , email=4 , anna=5 , search=6 , browse=7 , open=8 , other=9")
+for i in range (2,10):
+    Train_MachineLearning(input("train sentence = "),i,int(input("target of this sentence = ")))
+
+
+# In[41]:
+
+
+print("math=1 , clock=2 , weather=3 , email=4 , anna=5 , search=6 , browse=7 , open=8 , other=9")
+for i in range (10,20):
+    Train_MachineLearning(input("train sentence = "),i,int(input("target of this sentence = ")))
 
