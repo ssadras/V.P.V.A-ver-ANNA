@@ -1,0 +1,16 @@
+sigmoid
+tanh
+softmax
+relu --------> *
+
+
+
+
+
+keras -------> from tensorflow
+
+
+model = keras.models.sequential()
+model.add(64,input_dim=     ,activation='relu')
+model.add(32,activation='sigmoid')
+model.compile(optimizer=      ,loss=      )
