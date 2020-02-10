@@ -38,4 +38,35 @@ open excel,8
 open powerpoint.,8
 open mocrosoft office 2016.,8
 search in google about me.,6
-is sinus of 180 equals to 0?,1
+how's The Weather?,3
+open internet download manager,8
+open folders,8
+open VLC media player,8
+open kmplayer,8
+open paint,8
+open kaspersky,8
+open corel videostudio,8
+open videostudio 2019,8
+open wireshark,8
+open PuTTy,8
+open Proteus 8,8
+open Recycle Bin,8
+open MultiCam CaptureLite,8
+open sample-sentences.txt,8
+open snipping tool,8
+open Remote Desktop Connection,8
+open Solitaire,8
+how's The Weather?,3
+open Pictures,8
+open Music,8
+open Devices and Printers,8
+open Nitro Pro,8
+open Sublime text 3,8
+open Photoshop CC,8
+open Adobe Photoshop cc 2019,8
+open Access,8
+open Creative Cloud,8
+open notepad ++,8
+open onenote,8
+open outlook,8
+2 plus 8 equals to,1
