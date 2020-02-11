@@ -1,0 +1,145 @@
+#b1{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 50px;
+  left: 50px;
+}
+
+#b2{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 50px;
+  left: 90px;
+}
+
+#b3{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 50px;
+  left: 130px;
+}
+
+#b4{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 80px;
+  left: 50px;
+}
+
+#b5{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 80px;
+  left: 90px;
+}
+
+#b6{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 80px;
+  left: 130px;
+}
+
+#b7{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 110px;
+  left: 50px;
+}
+
+#b8{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 110px;
+  left: 90px;
+}
+
+#b9{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 110px;
+  left: 130px;
+}
+#b0{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 140px;
+  left: 90px;
+}
+#plus{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 50px;
+  left: 170px;
+}
+#subtract{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 80px;
+  left: 170px
+}
+#equal{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 110px;
+  left: 170px
+}
+#times{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 140px;
+  left: 50px;
+}
+#dev{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 140px;
+  left: 130px;
+}
+#box{
+  background: lightgray;
+  position: absolute;
+  width: 170px;
+  height: 30px;
+  top: 20px;
+  left: 50px;
+}
+#sub-b{
+  background: lightgray;
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  top: 20px;
+  left: 220px;
+  font-size: 10px;
+}
