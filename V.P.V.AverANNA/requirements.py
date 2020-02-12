@@ -1,5 +1,6 @@
 import wikipedia as wiki 
-import webbrowser as web 
+import webbrowser as web
+import wolframalpha as prc
 import requests as req 
 import smtplib
 import ssl
