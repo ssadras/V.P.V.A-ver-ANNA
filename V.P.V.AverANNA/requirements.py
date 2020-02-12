@@ -75,7 +75,10 @@ class client (object):
 			return "Error : loading query failed."
 		return next(self.query.results).text
 def all_extensions(query_string):
-        c = client("V5X78Y-Y2HJH5Y63E")
-        c.make_query(query_string)
-        return c.result()
+	try:
+		c = client("V5X78Y-Y2HJH5Y63E")
+		c.make_query(query_string)
+		return c.result()
+	except:
+		return "I'm not sure I'm understand";
 
