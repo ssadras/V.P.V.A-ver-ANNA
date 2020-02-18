@@ -70,3 +70,203 @@ open notepad ++,8
 open onenote,8
 open outlook,8
 2 plus 8 equals to,1
+One Plus One Equal to what? , 1
+Two Plus Two Equal to what? , 1
+Three Plus Three Equal to what? , 1
+Four Plus Four Equal to what? , 1
+Five Plus Five Equal to what? , 1
+Six Plus Six Equal to what? , 1
+Seven Plus Seven Equal to what? , 1
+Eight Plus Eight Equal to what? , 1
+Nine Plus Nine Equal to what? , 1
+Ten Plus Ten Equal to what? , 1
+Eleven Plus Eleven Equal to what? , 1
+Twelve Plus Twelve Equal to what? , 1
+Thirteen Plus Thirteen Equal to what? , 1
+Fourteen Plus Fourteen Equal to what? , 1
+Fifteen Plus Fifteen Equal to what? , 1
+Sixteen Plus Sixteen Equal to what? , 1
+Seventeen Plus Seventeen Equal to what? , 1
+Eighteen Plus Eighteen Equal to what? , 1
+Nineteen Plus Nineteen Equal to what? , 1
+Twenty Plus Twenty Equal to what? , 1
+Ten Plus Twenty Two Equal to what? , 1
+One Hundred and Eighty Seven Plus Seventy Seven Equal to what? , 1
+Forty Five Plus Ten Equal to what? , 1
+Nineteen Plus One Hundred and Seven Equal to what? , 1
+One Hundred and Seventy Six Plus One Hundred and Ninety Two Equal to what? , 1
+Twenty Eight Plus One Hundred and Thirty Equal to what? , 1
+One Hundred and Seventy Plus One Hundred and Six Equal to what? , 1
+Twenty One Plus One Hundred and Seventy Four Equal to what? , 1
+Twenty Four Plus Seventy One Equal to what? , 1
+Two Plus Twenty Eight Equal to what? , 1
+Seventy Five Plus One Hundred and Thirty Three Equal to what? , 1
+One Hundred and Sixty Four Plus Ninety Equal to what? , 1
+One Hundred and Ninety Four Plus One Hundred and Ninety Four Equal to what? , 1
+One Hundred and Seventy Four Plus Forty Seven Equal to what? , 1
+Sixty Two Plus Sixty One Equal to what? , 1
+One Hundred and Seventy Five Plus Four Equal to what? , 1
+One Hundred and Ninety Five Plus One Hundred and Thirty Five Equal to what? , 1
+One Hundred and Sixty Four Plus One Hundred and Sixty Three Equal to what? , 1
+One Hundred and Sixteen Plus Fifty Four Equal to what? , 1
+Forty Plus One Hundred and Three Equal to what? , 1
+Eighty Four  Plus  Thirty Nine  Equal to what? , 1
+Ninety Two  Plus One Hundred and Fourteen  Equal to what? , 1
+One Hundred and Thirty Four  Plus  Twenty One  Equal to what? , 1
+One Hundred and Seventy Four  Plus One Hundred and Fifty Six  Equal to what? , 1
+Twenty Seven  Plus One Hundred and Eighty Four  Equal to what? , 1
+One Hundred and Thirty Eight  Plus One Hundred and Fifty Two  Equal to what? , 1
+One Hundred and Nineteen  Plus One Hundred and Thirty Three  Equal to what? , 1
+Twenty Eight  Plus  Four  Equal to what? , 1
+Six  Plus  Twenty  Equal to what? , 1
+Ten  Plus One Hundred and Ninety Three  Equal to what? , 1
+Two Hundred  Plus One Hundred and Eighty One  Equal to what? , 1
+One Hundred and Ninety Four  Plus  Ninety Nine  Equal to what? , 1
+Fifty Eight  Plus One Hundred and One  Equal to what? , 1
+Eight  Plus  Twenty  Equal to what? , 1
+One Hundred and Sixty Seven  Plus One Hundred and Forty Eight  Equal to what? , 1
+One Hundred and Seventy Nine  Plus  Ninety  Equal to what? , 1
+One Hundred and Forty  Plus  Thirty Eight  Equal to what? , 1
+Nineteen  Plus One Hundred and Six  Equal to what? , 1
+One Hundred and Three  Plus One Hundred and Thirty  Equal to what? , 1
+One Hundred and Nine  Plus One Hundred and Eighty Six  Equal to what? , 1
+ Forty Nine  Multiplication  Ninety Eight  Equal to what? , 1
+One Hundred and Sixty One  Multiplication  Two  Equal to what? , 1
+ Twenty Five  Multiplication  Ninety Two  Equal to what? , 1
+ Twenty Nine  Multiplication One Hundred and Seventy Nine  Equal to what? , 1
+ Thirty Two  Multiplication One Hundred and Sixty Two  Equal to what? , 1
+ Twenty Six  Multiplication One Hundred and Four  Equal to what? , 1
+One Hundred and Fifty  Multiplication  Thirty Nine  Equal to what? , 1
+One Hundred and Ninety One  Multiplication One Hundred and Eighty Nine  Equal to what? , 1
+ Ninety Five  Multiplication  Sixty Two  Equal to what? , 1
+ Thirty  Multiplication One Hundred and Eight  Equal to what? , 1
+One Hundred and Seventeen  Multiplication One Hundred and Seventy Nine  Equal to what? , 1
+ Twenty Three  Multiplication  Sixty Eight  Equal to what? , 1
+One Hundred and Ninety Six  Multiplication  Ninety  Equal to what? , 1
+One Hundred and Ninety  Multiplication One Hundred and Ninety One  Equal to what? , 1
+One Hundred and Forty One  Multiplication One Hundred and Ten  Equal to what? , 1
+One Hundred and Forty Six  Multiplication  Forty Seven  Equal to what? , 1
+One Hundred and Ninety Four  Multiplication  Fifty Eight  Equal to what? , 1
+Thirty Six  Multiplication  Fifty Eight  Equal to what? , 1
+Sixty Four  Multiplication One Hundred and Fifty Nine  Equal to what? , 1
+Forty Three  Multiplication  Ten  Equal to what? , 1
+Sixty Six  Multiplication  Eighty Two  Equal to what? , 1
+Thirty Two  Multiplication  Sixty  Equal to what? , 1
+One Hundred and Two  Multiplication One Hundred and Twenty Three  Equal to what? , 1
+One Hundred and Thirty Seven  Multiplication One Hundred and Seventy Four  Equal to what? , 1
+One Hundred and Fifty Three  Multiplication One Hundred and Sixty Four  Equal to what? , 1
+Sixty Two  Multiplication One Hundred and Thirty Eight  Equal to what? , 1
+Sixty Two  Multiplication  Thirty Five  Equal to what? , 1
+Eighty Two  Multiplication One Hundred and Nineteen  Equal to what? , 1
+One Hundred and Forty One  Multiplication  Twenty Six  Equal to what? , 1
+One Hundred and Eighty Three  Multiplication One Hundred  Equal to what? , 1
+One Hundred and Three  Multiplication One Hundred and Seventeen  Equal to what? , 1
+Sixty Three  Multiplication One Hundred and Nineteen  Equal to what? , 1
+Thirteen  Multiplication One Hundred and Thirteen  Equal to what? , 1
+One Hundred and Fifty  Multiplication One Hundred and Fifty Eight  Equal to what? , 1
+One Hundred and Fifty  Multiplication One Hundred and Ninety Seven  Equal to what? , 1
+One Hundred and Seventy Five  Multiplication  Seventy  Equal to what? , 1
+Sixty One  Multiplication One Hundred and Ninety Four  Equal to what? , 1
+Twenty Five  Multiplication  Ninety Four  Equal to what? , 1
+One Hundred and Forty Four  Multiplication  Seventy One  Equal to what? , 1
+One Hundred and Forty Seven  Multiplication One Hundred and Seventeen  Equal to what? , 1
+Seventy Three  Multiplication  Sixty Six  Equal to what? , 1
+Fifty Six  Multiplication One Hundred and Sixty Six  Equal to what? , 1
+Ninety Seven  Multiplication One Hundred and Forty Six  Equal to what? , 1
+Sixty Seven  Multiplication One Hundred and Four  Equal to what? , 1
+One Hundred and Forty  Multiplication  Twenty  Equal to what? , 1
+Thirty Nine  Multiplication One Hundred and Three  Equal to what? , 1
+Thirty Seven  Multiplication One Hundred and One  Equal to what? , 1
+Fifty Six  Multiplication One Hundred and Fifty Eight  Equal to what? , 1
+One Hundred and Five  Multiplication One Hundred and Ten  Equal to what? , 1
+Eighteen  Multiplication One Hundred and Twenty Two  Equal to what? , 1
+Sixteen  Multiplication One Hundred and Eighty Three  Equal to what? , 1
+One Hundred and Forty Three  Multiplication One Hundred and Fifty Three  Equal to what? , 1
+Sixty One  Multiplication  Seventeen  Equal to what? , 1
+Seven  Multiplication One Hundred and Ninety Six  Equal to what? , 1
+One Hundred and Four  Multiplication  Fifty Seven  Equal to what? , 1
+Seventy Eight  Multiplication One Hundred and Seven  Equal to what? , 1
+Three  Multiplication One Hundred and Thirty  Equal to what? , 1
+One Hundred and Twenty Nine  Multiplication One Hundred and Ninety Four  Equal to what? , 1
+One Hundred and Twenty  Multiplication  Twenty Five  Equal to what? , 1
+Forty Three  Multiplication One Hundred and Seventy Nine  Equal to what? , 1
+One Hundred and Sixty Nine  Multiplication  Ninety One  Give what? , 1
+Sixty One  Multiplication One Hundred and Ten  Give what? , 1
+One Hundred and Fifty Seven  Multiplication  Twenty Two  Give what? , 1
+One Hundred and Twenty Three  Multiplication  Sixteen  Give what? , 1
+Three  Multiplication One Hundred and Ninety Three  Give what? , 1
+Forty Seven  Multiplication One Hundred and Sixty Five  Give what? , 1
+One Hundred and Thirty  Multiplication One Hundred and Six  Give what? , 1
+Twenty Three  Multiplication One Hundred and Sixty Four  Give what? , 1
+Forty Four  Multiplication One Hundred and Twenty Five  Give what? , 1
+Sixty Five  Multiplication One Hundred and Ninety Two  Give what? , 1
+Seventy Three  Multiplication One Hundred and Thirty Seven  Give what? , 1
+Thirty One  Multiplication One Hundred and Eighty Two  Give what? , 1
+One Hundred and Eighteen  Multiplication  Thirty Nine  Give what? , 1
+Fifty Seven  Multiplication  Seventy Three  Give what? , 1
+One Hundred and Eleven  Multiplication One Hundred and Eight  Give what? , 1
+Sixteen  Multiplication  Twenty One  Give what? , 1
+One Hundred and Fifty Six  Multiplication One Hundred and Ninety Six  Give what? , 1
+One Hundred and Sixty Seven  Multiplication  Fifty  Give what? , 1
+Sixty One  Multiplication  Forty  Give what? , 1
+Sixty Four  Multiplication  Forty Nine  Give what? , 1
+Twenty One  Multiplication  Eighty Two  Give what? , 1
+One Hundred and Ninety Eight  Multiplication  Eighty Nine  Give what? , 1
+One Hundred and Eight  Multiplication  Thirty Two  Give what? , 1
+Ninety Five  Multiplication One Hundred and Fifty Two  Give what? , 1
+Eight  Multiplication One Hundred  Give what? , 1
+Forty Five  Multiplication  Fourteen  Give what? , 1
+Twenty Eight  Multiplication One Hundred and Thirty Five  Give what? , 1
+Thirty Nine  Multiplication One Hundred and Sixty One  Give what? , 1
+Fifty Two  Multiplication  Twenty Nine  Give what? , 1
+One Hundred and Fifty Nine  Multiplication One Hundred and Forty Five  Give what? , 1
+Twenty  Multiplication One Hundred and Three  Give what? , 1
+One Hundred and Twenty Two  Multiplication One Hundred and Seventy Five  Give what? , 1
+Three  Multiplication One Hundred and Eighty Six  Give what? , 1
+One Hundred and Seventy  Multiplication One Hundred and Forty Eight  Give what? , 1
+One Hundred and Fifty One  Multiplication One Hundred and Seventeen  Give what? , 1
+Nine  Multiplication One Hundred and Thirty  Give what? , 1
+One Hundred and Eighty  Multiplication  Thirty Five  Give what? , 1
+One Hundred and Eighty One  Multiplication One Hundred and Eighteen  Give what? , 1
+Forty Seven  Multiplication One Hundred and Ninety Three  Give what? , 1
+One Hundred and Seventy Seven  Multiplication  Sixty  Give what? , 1
+Sinus of One Hundred and Four  Give what? , 1
+Sinus of One Hundred and Sixty Four  Give what? , 1
+Sinus of  Seventy Seven  Give what? , 1
+Sinus of One Hundred and Seventy Six  Give what? , 1
+Sinus of One Hundred and Ninety Nine  Give what? , 1
+Sinus of One Hundred and Thirty Six  Give what? , 1
+Sinus of  Forty Eight  Give what? , 1
+Sinus of One Hundred and Forty  Give what? , 1
+Sinus of One Hundred and Ninety Seven  Give what? , 1
+Sinus of  Forty Two  Give what? , 1
+Sinus of One Hundred and Forty Five  Give what? , 1
+Sinus of  Ninety Two  Give what? , 1
+Sinus of One Hundred and Eighty Five  Give what? , 1
+Sinus of One Hundred and Twenty Three  Give what? , 1
+Sinus of  Sixty Eight  Give what? , 1
+Sinus of One Hundred and Five  Give what? , 1
+Sinus of One Hundred and Ten  Give what? , 1
+Sinus of One Hundred and Eighty  Give what? , 1
+Sinus of  Eighty Five  Give what? , 1
+Sinus of  Thirty  Give what? , 1
+Cosine of One Hundred and Forty Five  Give what? , 1
+Cosine of  Twenty Three  Give what? , 1
+Cosine of One Hundred and Twenty One  Give what? , 1
+Cosine of  Seventy Seven  Give what? , 1
+Cosine of One Hundred and Forty Three  Give what? , 1
+Cosine of One Hundred and Forty  Give what? , 1
+Cosine of  Fifty  Give what? , 1
+Cosine of  Thirty Seven  Give what? , 1
+Cosine of One Hundred and Fifty Two  Give what? , 1
+Cosine of  Ninety  Give what? , 1
+Cosine of One Hundred and Ten  Give what? , 1
+Cosine of One Hundred and Thirty Nine  Give what? , 1
+Cosine of One Hundred and Twenty One  Give what? , 1
+Cosine of One Hundred and Fifteen  Give what? , 1
+Cosine of One Hundred and Twenty Five  Give what? , 1
+Cosine of One Hundred and Nine  Give what? , 1
+Cosine of One Hundred and Forty Five  Give what? , 1
+Cosine of  Fifty One  Give what? , 1
+Cosine of  Fifty Seven  Give what? , 1
+Cosine of One Hundred and Forty Three  Give what? , 1
