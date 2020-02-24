@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8'?><main>
+<sadana-services>
+<price-service>
+<status>active</status><time><![CDATA[1582305410719]]></time>
+<item>
+<name><![CDATA[دلار]]></name>
+<price><![CDATA[۱۴۲,۰۳۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[یورو]]></name>
+<price><![CDATA[۱۵۴,۰۲۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[درهم امارات]]></name>
+<price><![CDATA[۳۹,۵۵۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[کرون سوئد]]></name>
+<price><![CDATA[۱۴,۷۸۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[کرون نروژ]]></name>
+<price><![CDATA[۱۵,۵۷۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[دینار عراق]]></name>
+<price><![CDATA[۱۲۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[فرانک سوئیس]]></name>
+<price><![CDATA[۱۴۸,۸۲۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[درام ارمنستان]]></name>
+<price><![CDATA[۳۰۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[لاری گرجستان]]></name>
+<price><![CDATA[۵۱,۰۴۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[روپیه پاکستان]]></name>
+<price><![CDATA[۹۷۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[ریال عربستان]]></name>
+<price><![CDATA[۳۸,۴۶۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[روبل روسیه]]></name>
+<price><![CDATA[۲,۲۸۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[روپیه هند]]></name>
+<price><![CDATA[۲,۱۵۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[دینار کویت]]></name>
+<price><![CDATA[۴۷۱,۶۰۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[دلار استرالیا]]></name>
+<price><![CDATA[۹۵,۸۰۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[ریال عمان]]></name>
+<price><![CDATA[۳۷۵,۴۳۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[ریال قطر]]></name>
+<price><![CDATA[۳۹,۷۱۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[دلار کانادا]]></name>
+<price><![CDATA[۱۰۸,۹۹۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[بات تایلند]]></name>
+<price><![CDATA[۴,۶۵۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[لیر ترکیه]]></name>
+<price><![CDATA[۲۳,۷۳۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[پوند انگلیس]]></name>
+<price><![CDATA[۱۸۵,۸۹۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[دلار هنگ کنگ]]></name>
+<price><![CDATA[۱۸,۶۹۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[منات آذربایجان]]></name>
+<price><![CDATA[۸۲,۵۰۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[رینگیت مالزی]]></name>
+<price><![CDATA[۳۴,۷۱۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[کرون دانمارک]]></name>
+<price><![CDATA[۲۱,۰۶۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[دلار نیوزیلند]]></name>
+<price><![CDATA[۹۱,۴۳۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[یوان چین]]></name>
+<price><![CDATA[۲۰,۶۴۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[ین ژاپن]]></name>
+<price><![CDATA[۱۲۸,۲۳۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[دینار بحرین]]></name>
+<price><![CDATA[۳۸۲,۵۱۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+<item>
+<name><![CDATA[لیر سوریه]]></name>
+<price><![CDATA[۳۴۰]]></price>
+<change><![CDATA[0]]></change>
+<percent><![CDATA[۰]]></percent>
+</item>
+</price-service>
+</sadana-services>
+</main>
