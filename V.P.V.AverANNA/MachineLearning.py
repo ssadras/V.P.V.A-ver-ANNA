@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[21]:
+# In[44]:
 
 
 import pandas as pd
@@ -9,48 +9,57 @@ import numpy as np
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize 
 from sklearn.neural_network import MLPClassifier
+import keras
+import tensorflow
+import keras
 
 
-# In[22]:
+# In[45]:
 
 
 math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
               ,'cosine','integral','identical','math']
-weather_words = ['weather','air','wind','rain','snow','sun','cloud','water']
+physics_words = ["electronic","magnetics"]
+chemistry_words = ['table','balance']
 clock_words = ['time','clock','alarm','stopwatch','timer']
 email_words = ['email','send','gmail','yahoo']
 anna_words = ['anna']
-search_words = ['search','find','meaning']
 browse_words = ['browse','url']
 open_words = ['open','firefox','chrome','calculator','powerpoint','excel','word','office']
 
 
-# In[23]:
+# In[46]:
 
 
 datasheet = pd.DataFrame()
 
 
-# In[24]:
+# In[47]:
 
 
 rows = []
 
 
-# In[25]:
+# In[48]:
 
 
-ml_model = MLPClassifier(hidden_layer_sizes=(2))
+ml_model = keras.models.Sequential()
+ml_model.add(keras.layers.Dense(128, input_dim=42, activation='relu'))
+ml_model.add(keras.layers.Dense(128, activation='relu'))
+ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
+ml_model.add(keras.layers.Dense(9, activation='softmax'))
+ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 
-# In[26]:
+# In[49]:
 
 
-column_names = math_words+weather_words+clock_words+email_words+anna_words
-column_names += search_words+browse_words+open_words+['target']
+column_names = math_words+clock_words+email_words+anna_words+physics_words+chemistry_words
+column_names += browse_words+open_words+['target']
+len(column_names)
 
 
-# In[27]:
+# In[50]:
 
 
 def TxtToRows ():
@@ -64,7 +73,7 @@ def TxtToRows ():
     return
 
 
-# In[28]:
+# In[51]:
 
 
 def RowsToTxt ():
@@ -76,7 +85,7 @@ def RowsToTxt ():
     return
 
 
-# In[29]:
+# In[52]:
 
 
 def preprocessing (sentence):
@@ -94,7 +103,7 @@ def preprocessing (sentence):
     
 
 
-# In[30]:
+# In[53]:
 
 
 def add_sample (sentence_list,sentence,target):
@@ -108,7 +117,7 @@ def add_sample (sentence_list,sentence,target):
     return datasheet
 
 
-# In[31]:
+# In[54]:
 
 
 def make_sample (sentence_list,sentence):
@@ -120,17 +129,17 @@ def make_sample (sentence_list,sentence):
     return data
 
 
-# In[32]:
+# In[55]:
 
 
 def predict_mode (sentence):
     global ml_model
     function_list = ['math','clock','weather','email','anna','search','browse','open','other']
-    predict = ml_model.predict([make_sample(preprocessing(sentence),sentence)])
+    predict = np.argmax(ml_model.predict(np.array([make_sample(preprocessing(sentence),sentence)]).reshape(1,-1)))
     return (function_list[int(predict)-1],int(predict))
 
 
-# In[33]:
+# In[56]:
 
 
 def radical_order (sentence):
@@ -156,7 +165,7 @@ def radical_order (sentence):
         return ("**0.5",sentence_list)
 
 
-# In[34]:
+# In[57]:
 
 
 def change_math_predict_mode (sentence):
@@ -182,7 +191,76 @@ def change_math_predict_mode (sentence):
     return output
 
 
-# In[35]:
+# In[58]:
+
+
+def math_predicts (sentence):
+    return
+
+
+# In[59]:
+
+
+def physic_predicts (sentence):
+    return
+
+
+# In[60]:
+
+
+def chmistry_predicts (sentence):
+    return
+
+
+# In[61]:
+
+
+# math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9 ,other=10
+
+
+# In[62]:
+
+
+def email_predicts (sentence):
+    return
+
+
+# In[63]:
+
+
+def clock_predicts (sentence):
+    return
+
+
+# In[64]:
+
+
+def anna_predicts (sentence):
+    return
+
+
+# In[65]:
+
+
+def search_predicts (sentence):
+    return
+
+
+# In[66]:
+
+
+def browse_predicts (sentence):
+    return
+
+
+# In[67]:
+
+
+def open_predicts (sentence):
+    return
+
+
+# In[68]:
 
 
 def FirstCou_Machine ():
@@ -195,11 +273,11 @@ def FirstCou_Machine ():
     datasheet.drop(0,axis=0,inplace=True)
     for i in range (len(rows)):
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'])
+    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=100, shuffle=True)
     return
 
 
-# In[36]:
+# In[69]:
 
 
 def UpdateML (sentence,target):
@@ -211,7 +289,7 @@ def UpdateML (sentence,target):
     return
 
 
-# In[37]:
+# In[70]:
 
 
 def MachineLearning (sentence,cou):
@@ -228,11 +306,11 @@ def MachineLearning (sentence,cou):
     return
 
 
-# In[38]:
+# In[71]:
 
 
 def Train_MachineLearning (sentence,cou,TrueTarget):
-    # math=1 , clock=2 , weather=3 , email=4 , anna=5 , search=6 , browse=7 , open=8 , other=9
+    # math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9 ,other=10
     if cou==1:
         FirstCou_Machine()
         (predSen,predNum)=predict_mode(sentence)
@@ -248,13 +326,13 @@ def Train_MachineLearning (sentence,cou,TrueTarget):
     return
 
 
-# In[39]:
+# In[72]:
 
 
-Train_MachineLearning("how's The Weather?",1,3)
+Train_MachineLearning("is it raining?",1,3)
 
 
-# In[40]:
+# In[ ]:
 
 
 print("math=1 , clock=2 , weather=3 , email=4 , anna=5 , search=6 , browse=7 , open=8 , other=9")
@@ -262,10 +340,16 @@ for i in range (2,10):
     Train_MachineLearning(input("train sentence = "),i,int(input("target of this sentence = ")))
 
 
-# In[41]:
+# In[ ]:
 
 
 print("math=1 , clock=2 , weather=3 , email=4 , anna=5 , search=6 , browse=7 , open=8 , other=9")
 for i in range (10,20):
     Train_MachineLearning(input("train sentence = "),i,int(input("target of this sentence = ")))
+
+
+# In[ ]:
+
+
+
 
