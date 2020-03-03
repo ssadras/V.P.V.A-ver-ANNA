@@ -57,6 +57,9 @@ class Set (object) :
 			new_str += "%s"%(str(self.mems[i])+a)
 		string = "{%s}"%new_str
 		return string;
+
+	def probability (self, other):
+		return self.length / other.length;
 class polynominal(object):
 	"""docstring for polynominal"""
 	def __init__(self, sentences):
