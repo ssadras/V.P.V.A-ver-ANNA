@@ -4716,6 +4716,5 @@ with 16 speed and 14 meters how many speed do we have? ,8
 with 13 speed and 24 velocity how many meters do we have? ,8
 with 87 meters and 76 velocity how many meters do we have? ,8
 with 45 speed and 78 meters how many meters do we have? ,8
-is it raining?,3
-2 plus 100 equals ?,3
+2 plus 100 equals ?,1
 2 plus 100 equals ?,1
