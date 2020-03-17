@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[208]:
+# In[160]:
 
 
 import pandas as pd
@@ -14,12 +14,12 @@ import tensorflow
 import keras
 
 
-# In[209]:
+# In[161]:
 
 
 math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
               ,'cosine','integral','identical','math']
-physics_words = ["electronic","magnetics"]
+physics_words = ["electronic","magnetics","speed","meter","second","velocity"]
 chemistry_words = ['table','balance']
 clock_words = ['time','clock','alarm','stopwatch','timer']
 email_words = ['email','send','gmail','yahoo']
@@ -28,30 +28,36 @@ browse_words = ['browse','url']
 open_words = ['open','firefox','chrome','calculator','powerpoint','excel','word','office']
 
 
-# In[210]:
+# In[162]:
 
 
 datasheet = pd.DataFrame()
 
 
-# In[211]:
+# In[163]:
 
 
 rows = []
 
 
-# In[212]:
+# In[164]:
 
 
-ml_model = keras.models.Sequential()
-ml_model.add(keras.layers.Dense(128, input_dim=35, activation='relu'))
-ml_model.add(keras.layers.Dense(128, activation='relu'))
-ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
-ml_model.add(keras.layers.Dense(9, activation='softmax'))
-ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+ml_model = ''
 
 
-# In[213]:
+# In[165]:
+
+
+#ml_model = keras.models.Sequential()
+#ml_model.add(keras.layers.Dense(128, input_dim=39, activation='relu'))
+#ml_model.add(keras.layers.Dense(128, activation='relu'))
+#ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
+#ml_model.add(keras.layers.Dense(9, activation='softmax'))
+#ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+
+# In[166]:
 
 
 column_names = math_words+clock_words+email_words+anna_words+physics_words+chemistry_words
@@ -59,7 +65,7 @@ column_names += browse_words+open_words+['target']
 len(column_names)
 
 
-# In[214]:
+# In[167]:
 
 
 def TxtToRows ():
@@ -73,7 +79,7 @@ def TxtToRows ():
     return
 
 
-# In[215]:
+# In[168]:
 
 
 def RowsToTxt ():
@@ -85,7 +91,7 @@ def RowsToTxt ():
     return
 
 
-# In[216]:
+# In[169]:
 
 
 def preprocessing (sentence):
@@ -103,7 +109,7 @@ def preprocessing (sentence):
     
 
 
-# In[217]:
+# In[170]:
 
 
 def add_sample (sentence_list,sentence,target):
@@ -117,7 +123,7 @@ def add_sample (sentence_list,sentence,target):
     return datasheet
 
 
-# In[218]:
+# In[171]:
 
 
 def make_sample (sentence_list,sentence):
@@ -129,17 +135,19 @@ def make_sample (sentence_list,sentence):
     return data
 
 
-# In[219]:
+# In[172]:
 
 
 def predict_mode (sentence):
     global ml_model
-    function_list = ['math','clock','weather','email','anna','search','browse','open','other']
-    predict = np.argmax(ml_model.predict(np.array([make_sample(preprocessing(sentence),sentence)]).reshape(1,-1)))
-    return (function_list[int(predict)-1],int(predict))
+    # math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9
+    function_list = ['math','clock','email','anna','search','browse','open','physics','chemistry']
+    pred = np.argmax(ml_model.predict(np.array([make_sample(preprocessing(sentence),sentence)]).reshape(1,-1)))
+    print (pred)
+    return (function_list[int(pred)-1],int(pred))
 
 
-# In[220]:
+# In[173]:
 
 
 def radical_order (sentence):
@@ -165,7 +173,7 @@ def radical_order (sentence):
         return ("**0.5",sentence_list)
 
 
-# In[221]:
+# In[174]:
 
 
 def change_math_predict_mode (sentence):
@@ -191,93 +199,102 @@ def change_math_predict_mode (sentence):
     return output
 
 
-# In[222]:
+# In[175]:
 
 
 def math_predicts (sentence):
     return
 
 
-# In[223]:
+# In[176]:
 
 
 def physic_predicts (sentence):
     return
 
 
-# In[224]:
+# In[177]:
 
 
 def chmistry_predicts (sentence):
     return
 
 
-# In[225]:
+# In[178]:
 
 
 # math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9 ,other=10
 
 
-# In[226]:
+# In[179]:
 
 
 def email_predicts (sentence):
     return
 
 
-# In[227]:
+# In[180]:
 
 
 def clock_predicts (sentence):
     return
 
 
-# In[228]:
+# In[181]:
 
 
 def anna_predicts (sentence):
     return
 
 
-# In[229]:
+# In[182]:
 
 
 def search_predicts (sentence):
     return
 
 
-# In[230]:
+# In[183]:
 
 
 def browse_predicts (sentence):
     return
 
 
-# In[231]:
+# In[184]:
 
 
 def open_predicts (sentence):
     return
 
 
-# In[232]:
+# In[185]:
 
 
 def FirstCou_Machine ():
-    global math_words,weather_words,clock_words,datasheet,rows,ml_model,column_names
-    TxtToRows()
-    ps = PorterStemmer()
-    for i in range (len(column_names)):
-        column_names[i]=ps.stem(column_names[i])
-        datasheet[column_names[i]]=[0]
-    datasheet.drop(0,axis=0,inplace=True)
-    for i in range (len(rows)):
-        datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70, shuffle=True)
+    global ml_model
+    ml_model = keras.models.load_model("MLModel")
     return
 
 
-# In[233]:
+# In[186]:
+
+
+#def FirstCou_Machine ():
+#    global math_words,weather_words,clock_words,datasheet,rows,ml_model,column_names
+#    TxtToRows()
+#    ps = PorterStemmer()
+#    for i in range (len(column_names)):
+#        column_names[i]=ps.stem(column_names[i])
+#        datasheet[column_names[i]]=[0]
+#    datasheet.drop(0,axis=0,inplace=True)
+#    for i in range (len(rows)):
+#        datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
+#    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70, shuffle=True)
+#    return
+
+
+# In[187]:
 
 
 def UpdateML (sentence,target):
@@ -285,11 +302,12 @@ def UpdateML (sentence,target):
     rows += [[sentence,target]]
     for i in range (len(rows)):
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'])
+    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],ephochs=70,shuffle=True)
+    ml_model.save("MLModel")
     return
 
 
-# In[234]:
+# In[188]:
 
 
 def MachineLearning (sentence,cou):
@@ -306,7 +324,7 @@ def MachineLearning (sentence,cou):
     return
 
 
-# In[235]:
+# In[189]:
 
 
 def Train_MachineLearning (sentence,cou,TrueTarget):
@@ -323,17 +341,54 @@ def Train_MachineLearning (sentence,cou,TrueTarget):
         UpdateML(sentence,TrueTarget)
         print(predSen)
     RowsToTxt()
+    #ml_model.save('MLModel')
     return
 
 
-# In[236]:
+# In[190]:
 
 
-FirstCou_Machine ()
+FirstCou_Machine()
 
 
-# In[238]:
+# In[191]:
 
 
-ml_model.save('MLModel')
+predict_mode('2 plus 2 equals to ?')
+
+
+# In[192]:
+
+
+predict_mode("open firefox")
+
+
+# In[193]:
+
+
+predict_mode("with 2 speed and 4 meters how many second do we have?")
+
+
+# In[159]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
