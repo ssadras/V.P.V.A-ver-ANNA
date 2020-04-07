@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[160]:
+# In[94]:
 
 
 import pandas as pd
@@ -14,13 +14,13 @@ import tensorflow
 import keras
 
 
-# In[161]:
+# In[95]:
 
 
 math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
               ,'cosine','integral','identical','math']
 physics_words = ["electronic","magnetics","speed","meter","second","velocity"]
-chemistry_words = ['table','balance']
+chemistry_words = ['Balance','H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og', 'Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon', 'Nitrogen', 'Oxygen', 'Fluorine', 'Neon', 'Sodium', 'Magnesium', 'Aluminium', 'Silicon', 'Phosphorus', 'Sulfur', 'Chlorine', 'Argon', 'Potassium', 'Calcium', 'Scandium', 'Titanium', 'Vanadium', 'Chromium', 'Manganese', 'Iron', 'Cobalt', 'Nickel', 'Copper', 'Zinc', 'Gallium', 'Germanium', 'Arsenic', 'Selenium', 'Bromine', 'Krypton', 'Rubidium', 'Strontium', 'Yttrium', 'Zirconium', 'Niobium', 'Molybdenum', 'Technetium', 'Ruthenium', 'Rhodium', 'Palladium', 'Silver', 'Cadmium', 'Indium', 'Tin', 'Antimony', 'Tellurium', 'Iodine', 'Xenon', 'Caesium', 'Barium', 'Lanthanum', 'Cerium', 'Praseodymium', 'Neodymium', 'Promethium', 'Samarium', 'Europium', 'Gadolinium', 'Terbium', 'Dysprosium', 'Holmium', 'Erbium', 'Thulium', 'Ytterbium', 'Lutetium', 'Hafnium', 'Tantalum', 'Tungsten', 'Rhenium', 'Osmium', 'Iridium', 'Platinum', 'Gold', 'Mercury', 'Thallium', 'Lead', 'Bismuth', 'Polonium', 'Astatine', 'Radon', 'Francium', 'Radium', 'Actinium', 'Thorium', 'Protactinium', 'Uranium', 'Neptunium', 'Plutonium', 'Americium', 'Curium', 'Berkelium', 'Californium', 'Einsteinium', 'Fermium', 'Mendelevium', 'Nobelium', 'Lawrencium', 'Rutherfordium', 'Dubnium', 'Seaborgium', 'Bohrium', 'Hassium', 'Meitnerium', 'Darmstadtium', 'Roentgenium', 'Copernicium', 'Nihonium', 'Flerovium', 'Moscovium', 'Livermorium', 'Tennessine', 'Oganesson']
 clock_words = ['time','clock','alarm','stopwatch','timer']
 email_words = ['email','send','gmail','yahoo']
 anna_words = ['anna']
@@ -28,36 +28,36 @@ browse_words = ['browse','url']
 open_words = ['open','firefox','chrome','calculator','powerpoint','excel','word','office']
 
 
-# In[162]:
+# In[96]:
 
 
 datasheet = pd.DataFrame()
 
 
-# In[163]:
+# In[97]:
 
 
 rows = []
 
 
-# In[164]:
+# In[98]:
 
 
 ml_model = ''
 
 
-# In[165]:
+# In[99]:
 
 
-#ml_model = keras.models.Sequential()
-#ml_model.add(keras.layers.Dense(128, input_dim=39, activation='relu'))
-#ml_model.add(keras.layers.Dense(128, activation='relu'))
-#ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
-#ml_model.add(keras.layers.Dense(9, activation='softmax'))
-#ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+ml_model = keras.models.Sequential()
+ml_model.add(keras.layers.Dense(128, input_dim=274, activation='relu'))
+ml_model.add(keras.layers.Dense(128, activation='relu'))
+ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
+ml_model.add(keras.layers.Dense(10, activation='softmax'))
+ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 
-# In[166]:
+# In[100]:
 
 
 column_names = math_words+clock_words+email_words+anna_words+physics_words+chemistry_words
@@ -65,7 +65,7 @@ column_names += browse_words+open_words+['target']
 len(column_names)
 
 
-# In[167]:
+# In[101]:
 
 
 def TxtToRows ():
@@ -79,7 +79,7 @@ def TxtToRows ():
     return
 
 
-# In[168]:
+# In[102]:
 
 
 def RowsToTxt ():
@@ -91,7 +91,7 @@ def RowsToTxt ():
     return
 
 
-# In[169]:
+# In[103]:
 
 
 def preprocessing (sentence):
@@ -109,7 +109,7 @@ def preprocessing (sentence):
     
 
 
-# In[170]:
+# In[104]:
 
 
 def add_sample (sentence_list,sentence,target):
@@ -123,7 +123,7 @@ def add_sample (sentence_list,sentence,target):
     return datasheet
 
 
-# In[171]:
+# In[105]:
 
 
 def make_sample (sentence_list,sentence):
@@ -135,7 +135,7 @@ def make_sample (sentence_list,sentence):
     return data
 
 
-# In[172]:
+# In[106]:
 
 
 def predict_mode (sentence):
@@ -147,7 +147,7 @@ def predict_mode (sentence):
     return (function_list[int(pred)-1],int(pred))
 
 
-# In[173]:
+# In[107]:
 
 
 def radical_order (sentence):
@@ -173,7 +173,7 @@ def radical_order (sentence):
         return ("**0.5",sentence_list)
 
 
-# In[174]:
+# In[108]:
 
 
 def change_math_predict_mode (sentence):
@@ -199,102 +199,102 @@ def change_math_predict_mode (sentence):
     return output
 
 
-# In[175]:
+# In[109]:
 
 
 def math_predicts (sentence):
     return
 
 
-# In[176]:
+# In[110]:
 
 
 def physic_predicts (sentence):
     return
 
 
-# In[177]:
+# In[111]:
 
 
 def chmistry_predicts (sentence):
     return
 
 
-# In[178]:
+# In[112]:
 
 
 # math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9 ,other=10
 
 
-# In[179]:
+# In[113]:
 
 
 def email_predicts (sentence):
     return
 
 
-# In[180]:
+# In[114]:
 
 
 def clock_predicts (sentence):
     return
 
 
-# In[181]:
+# In[115]:
 
 
 def anna_predicts (sentence):
     return
 
 
-# In[182]:
+# In[116]:
 
 
 def search_predicts (sentence):
     return
 
 
-# In[183]:
+# In[117]:
 
 
 def browse_predicts (sentence):
     return
 
 
-# In[184]:
+# In[118]:
 
 
 def open_predicts (sentence):
     return
 
 
-# In[185]:
-
-
-def FirstCou_Machine ():
-    global ml_model
-    ml_model = keras.models.load_model("MLModel")
-    return
-
-
-# In[186]:
+# In[119]:
 
 
 #def FirstCou_Machine ():
-#    global math_words,weather_words,clock_words,datasheet,rows,ml_model,column_names
-#    TxtToRows()
-#    ps = PorterStemmer()
-#    for i in range (len(column_names)):
-#        column_names[i]=ps.stem(column_names[i])
-#        datasheet[column_names[i]]=[0]
-#    datasheet.drop(0,axis=0,inplace=True)
-#    for i in range (len(rows)):
-#        datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-#    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70, shuffle=True)
+#    global ml_model
+#    ml_model = keras.models.load_model("MLModel")
 #    return
 
 
-# In[187]:
+# In[120]:
+
+
+def FirstCou_Machine ():
+    global math_words,weather_words,clock_words,datasheet,rows,ml_model,column_names
+    TxtToRows()
+    ps = PorterStemmer()
+    for i in range (len(column_names)):
+        column_names[i]=ps.stem(column_names[i])
+        datasheet[column_names[i]]=[0]
+    datasheet.drop(0,axis=0,inplace=True)
+    for i in range (len(rows)):
+        datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
+    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70, shuffle=True)
+    return
+
+
+# In[121]:
 
 
 def UpdateML (sentence,target):
@@ -307,7 +307,7 @@ def UpdateML (sentence,target):
     return
 
 
-# In[188]:
+# In[122]:
 
 
 def MachineLearning (sentence,cou):
@@ -324,7 +324,7 @@ def MachineLearning (sentence,cou):
     return
 
 
-# In[189]:
+# In[123]:
 
 
 def Train_MachineLearning (sentence,cou,TrueTarget):
@@ -345,46 +345,16 @@ def Train_MachineLearning (sentence,cou,TrueTarget):
     return
 
 
-# In[190]:
+# In[124]:
 
 
 FirstCou_Machine()
 
 
-# In[191]:
+# In[125]:
 
 
-predict_mode('2 plus 2 equals to ?')
-
-
-# In[192]:
-
-
-predict_mode("open firefox")
-
-
-# In[193]:
-
-
-predict_mode("with 2 speed and 4 meters how many second do we have?")
-
-
-# In[159]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
+ml_model.save('MLModel')
 
 
 # In[ ]:
