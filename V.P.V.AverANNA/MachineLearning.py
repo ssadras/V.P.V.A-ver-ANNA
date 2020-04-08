@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[94]:
+# In[244]:
 
 
 import pandas as pd
@@ -14,7 +14,7 @@ import tensorflow
 import keras
 
 
-# In[95]:
+# In[245]:
 
 
 math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
@@ -28,36 +28,36 @@ browse_words = ['browse','url']
 open_words = ['open','firefox','chrome','calculator','powerpoint','excel','word','office']
 
 
-# In[96]:
+# In[246]:
 
 
 datasheet = pd.DataFrame()
 
 
-# In[97]:
+# In[247]:
 
 
 rows = []
 
 
-# In[98]:
+# In[248]:
 
 
 ml_model = ''
 
 
-# In[99]:
+# In[249]:
 
 
-ml_model = keras.models.Sequential()
-ml_model.add(keras.layers.Dense(128, input_dim=274, activation='relu'))
-ml_model.add(keras.layers.Dense(128, activation='relu'))
-ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
-ml_model.add(keras.layers.Dense(10, activation='softmax'))
-ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+#ml_model = keras.models.Sequential()
+#ml_model.add(keras.layers.Dense(128, input_dim=274, activation='relu'))
+#ml_model.add(keras.layers.Dense(128, activation='relu'))
+#ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
+#ml_model.add(keras.layers.Dense(10, activation='softmax'))
+#ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 
-# In[100]:
+# In[250]:
 
 
 column_names = math_words+clock_words+email_words+anna_words+physics_words+chemistry_words
@@ -65,7 +65,7 @@ column_names += browse_words+open_words+['target']
 len(column_names)
 
 
-# In[101]:
+# In[251]:
 
 
 def TxtToRows ():
@@ -79,7 +79,7 @@ def TxtToRows ():
     return
 
 
-# In[102]:
+# In[252]:
 
 
 def RowsToTxt ():
@@ -91,7 +91,7 @@ def RowsToTxt ():
     return
 
 
-# In[103]:
+# In[253]:
 
 
 def preprocessing (sentence):
@@ -109,7 +109,7 @@ def preprocessing (sentence):
     
 
 
-# In[104]:
+# In[254]:
 
 
 def add_sample (sentence_list,sentence,target):
@@ -123,7 +123,7 @@ def add_sample (sentence_list,sentence,target):
     return datasheet
 
 
-# In[105]:
+# In[255]:
 
 
 def make_sample (sentence_list,sentence):
@@ -135,7 +135,7 @@ def make_sample (sentence_list,sentence):
     return data
 
 
-# In[106]:
+# In[256]:
 
 
 def predict_mode (sentence):
@@ -147,7 +147,7 @@ def predict_mode (sentence):
     return (function_list[int(pred)-1],int(pred))
 
 
-# In[107]:
+# In[257]:
 
 
 def radical_order (sentence):
@@ -173,7 +173,7 @@ def radical_order (sentence):
         return ("**0.5",sentence_list)
 
 
-# In[108]:
+# In[258]:
 
 
 def change_math_predict_mode (sentence):
@@ -199,85 +199,76 @@ def change_math_predict_mode (sentence):
     return output
 
 
-# In[109]:
+# In[259]:
 
 
 def math_predicts (sentence):
     return
 
 
-# In[110]:
+# In[260]:
 
 
 def physic_predicts (sentence):
     return
 
 
-# In[111]:
+# In[261]:
 
 
 def chmistry_predicts (sentence):
     return
 
 
-# In[112]:
+# In[262]:
 
 
 # math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9 ,other=10
 
 
-# In[113]:
+# In[263]:
 
 
 def email_predicts (sentence):
     return
 
 
-# In[114]:
+# In[264]:
 
 
 def clock_predicts (sentence):
     return
 
 
-# In[115]:
+# In[265]:
 
 
 def anna_predicts (sentence):
     return
 
 
-# In[116]:
+# In[266]:
 
 
 def search_predicts (sentence):
     return
 
 
-# In[117]:
+# In[267]:
 
 
 def browse_predicts (sentence):
     return
 
 
-# In[118]:
+# In[268]:
 
 
 def open_predicts (sentence):
     return
 
 
-# In[119]:
-
-
-#def FirstCou_Machine ():
-#    global ml_model
-#    ml_model = keras.models.load_model("MLModel")
-#    return
-
-
-# In[120]:
+# In[269]:
 
 
 def FirstCou_Machine ():
@@ -290,11 +281,28 @@ def FirstCou_Machine ():
     datasheet.drop(0,axis=0,inplace=True)
     for i in range (len(rows)):
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70, shuffle=True)
+    ml_model = keras.models.load_model("MLModel")
     return
 
 
-# In[121]:
+# In[270]:
+
+
+#def FirstCou_Machine ():
+#    global math_words,weather_words,clock_words,datasheet,rows,ml_model,column_names
+#    TxtToRows()
+#    ps = PorterStemmer()
+#    for i in range (len(column_names)):
+#        column_names[i]=ps.stem(column_names[i])
+#        datasheet[column_names[i]]=[0]
+#    datasheet.drop(0,axis=0,inplace=True)
+#    for i in range (len(rows)):
+#        datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
+#    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70, shuffle=True)
+#    return
+
+
+# In[271]:
 
 
 def UpdateML (sentence,target):
@@ -302,12 +310,12 @@ def UpdateML (sentence,target):
     rows += [[sentence,target]]
     for i in range (len(rows)):
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],ephochs=70,shuffle=True)
+    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70,shuffle=True)
     ml_model.save("MLModel")
     return
 
 
-# In[122]:
+# In[275]:
 
 
 def MachineLearning (sentence,cou):
@@ -321,10 +329,11 @@ def MachineLearning (sentence,cou):
         UpdateML(sentence,predNum)
         print(predSen)
     RowsToTxt()
+    ml_model.save('MLModel')
     return
 
 
-# In[123]:
+# In[273]:
 
 
 def Train_MachineLearning (sentence,cou,TrueTarget):
@@ -341,20 +350,20 @@ def Train_MachineLearning (sentence,cou,TrueTarget):
         UpdateML(sentence,TrueTarget)
         print(predSen)
     RowsToTxt()
-    #ml_model.save('MLModel')
+    ml_model.save('MLModel')
     return
 
 
-# In[124]:
+# In[274]:
 
 
-FirstCou_Machine()
+Train_MachineLearning("Balance SO plus Fe to SFe plus O",1,9)
 
 
-# In[125]:
+# In[ ]:
 
 
-ml_model.save('MLModel')
+
 
 
 # In[ ]:
