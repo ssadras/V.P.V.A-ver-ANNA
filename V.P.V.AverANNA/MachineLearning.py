@@ -21,7 +21,7 @@ math_words = ['plu','equal','minus','subtraction','multiplication','radical','si
               ,'cosine','integral','identical','math']
 physics_words = ["electronic","magnetics","speed","meter","second","velocity"]
 chemistry_words = ['Balance','H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og', 'Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon', 'Nitrogen', 'Oxygen', 'Fluorine', 'Neon', 'Sodium', 'Magnesium', 'Aluminium', 'Silicon', 'Phosphorus', 'Sulfur', 'Chlorine', 'Argon', 'Potassium', 'Calcium', 'Scandium', 'Titanium', 'Vanadium', 'Chromium', 'Manganese', 'Iron', 'Cobalt', 'Nickel', 'Copper', 'Zinc', 'Gallium', 'Germanium', 'Arsenic', 'Selenium', 'Bromine', 'Krypton', 'Rubidium', 'Strontium', 'Yttrium', 'Zirconium', 'Niobium', 'Molybdenum', 'Technetium', 'Ruthenium', 'Rhodium', 'Palladium', 'Silver', 'Cadmium', 'Indium', 'Tin', 'Antimony', 'Tellurium', 'Iodine', 'Xenon', 'Caesium', 'Barium', 'Lanthanum', 'Cerium', 'Praseodymium', 'Neodymium', 'Promethium', 'Samarium', 'Europium', 'Gadolinium', 'Terbium', 'Dysprosium', 'Holmium', 'Erbium', 'Thulium', 'Ytterbium', 'Lutetium', 'Hafnium', 'Tantalum', 'Tungsten', 'Rhenium', 'Osmium', 'Iridium', 'Platinum', 'Gold', 'Mercury', 'Thallium', 'Lead', 'Bismuth', 'Polonium', 'Astatine', 'Radon', 'Francium', 'Radium', 'Actinium', 'Thorium', 'Protactinium', 'Uranium', 'Neptunium', 'Plutonium', 'Americium', 'Curium', 'Berkelium', 'Californium', 'Einsteinium', 'Fermium', 'Mendelevium', 'Nobelium', 'Lawrencium', 'Rutherfordium', 'Dubnium', 'Seaborgium', 'Bohrium', 'Hassium', 'Meitnerium', 'Darmstadtium', 'Roentgenium', 'Copernicium', 'Nihonium', 'Flerovium', 'Moscovium', 'Livermorium', 'Tennessine', 'Oganesson']
-clock_words = ['time','clock','alarm','stopwatch','timer']
+clock_words = ['time','clock','alarm','stopwatch','timer','minute','hour']
 email_words = ['email','send','gmail','yahoo']
 anna_words = ['anna']
 browse_words = ['browse','url']
@@ -46,13 +46,13 @@ rows = []
 ml_model = ''
 
 
-# In[249]:
+# In[277]:
 
 
 #ml_model = keras.models.Sequential()
-#ml_model.add(keras.layers.Dense(128, input_dim=274, activation='relu'))
-#ml_model.add(keras.layers.Dense(128, activation='relu'))
-#ml_model.add(keras.layers.Dense(128, activation='sigmoid'))
+#ml_model.add(keras.layers.Dense(128, input_dim=276, activation='relu'))
+#ml_model.add(keras.layers.Dense(256, activation='relu'))
+#ml_model.add(keras.layers.Dense(512, activation='sigmoid'))
 #ml_model.add(keras.layers.Dense(10, activation='softmax'))
 #ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
@@ -268,7 +268,7 @@ def open_predicts (sentence):
     return
 
 
-# In[269]:
+# In[276]:
 
 
 def FirstCou_Machine ():
@@ -285,7 +285,7 @@ def FirstCou_Machine ():
     return
 
 
-# In[270]:
+# In[275]:
 
 
 #def FirstCou_Machine ():
@@ -293,12 +293,14 @@ def FirstCou_Machine ():
 #    TxtToRows()
 #    ps = PorterStemmer()
 #    for i in range (len(column_names)):
+#        if column_names.count(column_names[i])>1:
+#            print(column_names.count(column_names[i]),i)
 #        column_names[i]=ps.stem(column_names[i])
 #        datasheet[column_names[i]]=[0]
 #    datasheet.drop(0,axis=0,inplace=True)
 #    for i in range (len(rows)):
 #        datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-#    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70, shuffle=True)
+#    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=50, shuffle=True)
 #    return
 
 
@@ -310,12 +312,12 @@ def UpdateML (sentence,target):
     rows += [[sentence,target]]
     for i in range (len(rows)):
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
-    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=70,shuffle=True)
+    ml_model.fit(datasheet.drop('target',axis=1),datasheet['target'],epochs=50,shuffle=True)
     ml_model.save("MLModel")
     return
 
 
-# In[275]:
+# In[272]:
 
 
 def MachineLearning (sentence,cou):
@@ -354,10 +356,10 @@ def Train_MachineLearning (sentence,cou,TrueTarget):
     return
 
 
-# In[274]:
+# In[ ]:
 
 
-Train_MachineLearning("Balance SO plus Fe to SFe plus O",1,9)
+
 
 
 # In[ ]:
