@@ -12435,6 +12435,4 @@ start timer for 5 hour ,2
 start timer for 54 second ,2
 start timer for 8 second ,2
 start timer for 13 second ,2
-start timer for 28 minute ,2
-start timer for 47 minute ,2
-set timer for 90 second,2
+2 plus 2 equals to ,1

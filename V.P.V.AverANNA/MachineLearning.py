@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[244]:
+# In[71]:
 
 
 import pandas as pd
@@ -14,7 +14,7 @@ import tensorflow
 import keras
 
 
-# In[245]:
+# In[72]:
 
 
 math_words = ['plu','equal','minus','subtraction','multiplication','radical','sinus'
@@ -28,25 +28,25 @@ browse_words = ['browse','url']
 open_words = ['open','firefox','chrome','calculator','powerpoint','excel','word','office']
 
 
-# In[246]:
+# In[73]:
 
 
 datasheet = pd.DataFrame()
 
 
-# In[247]:
+# In[74]:
 
 
 rows = []
 
 
-# In[248]:
+# In[75]:
 
 
 ml_model = ''
 
 
-# In[277]:
+# In[76]:
 
 
 #ml_model = keras.models.Sequential()
@@ -57,7 +57,7 @@ ml_model = ''
 #ml_model.compile(optimizer=keras.optimizers.Adam(lr=0.002), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 
-# In[250]:
+# In[77]:
 
 
 column_names = math_words+clock_words+email_words+anna_words+physics_words+chemistry_words
@@ -65,7 +65,7 @@ column_names += browse_words+open_words+['target']
 len(column_names)
 
 
-# In[251]:
+# In[78]:
 
 
 def TxtToRows ():
@@ -79,7 +79,7 @@ def TxtToRows ():
     return
 
 
-# In[252]:
+# In[79]:
 
 
 def RowsToTxt ():
@@ -91,7 +91,7 @@ def RowsToTxt ():
     return
 
 
-# In[253]:
+# In[80]:
 
 
 def preprocessing (sentence):
@@ -109,7 +109,7 @@ def preprocessing (sentence):
     
 
 
-# In[254]:
+# In[81]:
 
 
 def add_sample (sentence_list,sentence,target):
@@ -123,7 +123,7 @@ def add_sample (sentence_list,sentence,target):
     return datasheet
 
 
-# In[255]:
+# In[82]:
 
 
 def make_sample (sentence_list,sentence):
@@ -135,7 +135,7 @@ def make_sample (sentence_list,sentence):
     return data
 
 
-# In[256]:
+# In[83]:
 
 
 def predict_mode (sentence):
@@ -143,11 +143,10 @@ def predict_mode (sentence):
     # math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9
     function_list = ['math','clock','email','anna','search','browse','open','physics','chemistry']
     pred = np.argmax(ml_model.predict(np.array([make_sample(preprocessing(sentence),sentence)]).reshape(1,-1)))
-    print (pred)
     return (function_list[int(pred)-1],int(pred))
 
 
-# In[257]:
+# In[84]:
 
 
 def radical_order (sentence):
@@ -173,7 +172,7 @@ def radical_order (sentence):
         return ("**0.5",sentence_list)
 
 
-# In[258]:
+# In[85]:
 
 
 def change_math_predict_mode (sentence):
@@ -199,76 +198,78 @@ def change_math_predict_mode (sentence):
     return output
 
 
-# In[259]:
+# In[86]:
 
 
 def math_predicts (sentence):
+    ChangedSen=change_math_predict_mode (sentence)
+    print(ChangedSen)
     return
 
 
-# In[260]:
+# In[87]:
 
 
 def physic_predicts (sentence):
     return
 
 
-# In[261]:
+# In[88]:
 
 
 def chmistry_predicts (sentence):
     return
 
 
-# In[262]:
+# In[89]:
 
 
-# math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9 ,other=10
+# math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9
 
 
-# In[263]:
+# In[90]:
 
 
 def email_predicts (sentence):
     return
 
 
-# In[264]:
+# In[91]:
 
 
 def clock_predicts (sentence):
     return
 
 
-# In[265]:
+# In[92]:
 
 
 def anna_predicts (sentence):
     return
 
 
-# In[266]:
+# In[93]:
 
 
 def search_predicts (sentence):
     return
 
 
-# In[267]:
+# In[94]:
 
 
 def browse_predicts (sentence):
     return
 
 
-# In[268]:
+# In[95]:
 
 
 def open_predicts (sentence):
     return
 
 
-# In[276]:
+# In[96]:
 
 
 def FirstCou_Machine ():
@@ -285,7 +286,7 @@ def FirstCou_Machine ():
     return
 
 
-# In[275]:
+# In[97]:
 
 
 #def FirstCou_Machine ():
@@ -304,11 +305,13 @@ def FirstCou_Machine ():
 #    return
 
 
-# In[271]:
+# In[98]:
 
 
 def UpdateML (sentence,target):
     global rows,datasheet
+    if sentence in datasheet.index :
+        return
     rows += [[sentence,target]]
     for i in range (len(rows)):
         datasheet = add_sample(preprocessing(rows[i][0]),rows[i][0],rows[i][1])
@@ -317,59 +320,34 @@ def UpdateML (sentence,target):
     return
 
 
-# In[272]:
+# In[99]:
 
 
 def MachineLearning (sentence,cou):
+    ListOfFunctions=[math_predicts,clock_predicts,email_predicts,anna_predicts,search_predicts,browse_predicts,open_predicts,physic_predicts,chmistry_predicts]
     if cou==1:
         FirstCou_Machine()
-        (predSen,predNum)=predict_mode(sentence)
-        UpdateML(sentence,predNum)
-        print(predSen)
-    else :
-        (predSen,predNum)=predict_mode(sentence)
-        UpdateML(sentence,predNum)
-        print(predSen)
+    (predSen,predNum)=predict_mode(sentence)
+    print(predSen)
+    ListOfFunctions[predNum-1](sentence)
+    UpdateML(sentence,predNum)
     RowsToTxt()
     ml_model.save('MLModel')
     return
 
 
-# In[273]:
+# In[100]:
 
 
 def Train_MachineLearning (sentence,cou,TrueTarget):
-    # math=1 , clock=2 , email=3 , anna=4 , search=5 , browse=6 , open=7 , physics=8 , chemistry = 9
+    ListOfFunctions=[math_predicts,clock_predicts,email_predicts,anna_predicts,search_predicts,browse_predicts,open_predicts,physic_predicts,chmistry_predicts]
     if cou==1:
         FirstCou_Machine()
-        (predSen,predNum)=predict_mode(sentence)
-        print(predNum==TrueTarget)
-        UpdateML(sentence,TrueTarget)
-        print(predSen)
-    else :
-        (predSen,predNum)=predict_mode(sentence)
-        print(predNum==TrueTarget)
-        UpdateML(sentence,TrueTarget)
-        print(predSen)
+    (predSen,predNum)=predict_mode(sentence)
+    print(predSen)
+    ListOfFunctions[predNum-1](sentence)
+    UpdateML(sentence,TrueTarget)
     RowsToTxt()
     ml_model.save('MLModel')
     return
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
